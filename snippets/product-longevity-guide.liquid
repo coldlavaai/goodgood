@@ -1,0 +1,366 @@
+{%- comment -%}
+  Product Size & Longevity Guide
+  Helps customers understand jar size, usage, and cost per application
+  Reduces price objections by showing long-term value
+{%- endcomment -%}
+
+<style>
+  .longevity-guide {
+    margin: 40px 0;
+    padding: 32px 24px;
+    background: #fffbf5;
+    border: 2px solid #024638;
+    border-radius: 12px;
+  }
+
+  .longevity-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .longevity-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .longevity-subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .guide-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .jar-visual {
+    background: #ffffff;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .jar-icon {
+    font-size: 80px;
+    margin-bottom: 12px;
+  }
+
+  .jar-size {
+    font-size: 28px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 4px;
+  }
+
+  .jar-weight {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .usage-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .usage-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .usage-card {
+    background: #ffffff;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .usage-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .usage-frequency {
+    font-size: 16px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .usage-duration {
+    font-size: 24px;
+    font-weight: 900;
+    color: #f7ced7;
+    text-shadow: 2px 2px 0 #024638;
+    margin-bottom: 8px;
+  }
+
+  .usage-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .cost-breakdown {
+    background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%);
+    border: 2px solid #16a34a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .cost-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #024638;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .cost-item {
+    text-align: center;
+  }
+
+  .cost-value {
+    font-size: 24px;
+    font-weight: 900;
+    color: #16a34a;
+    margin-bottom: 4px;
+  }
+
+  .cost-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .application-guide {
+    background: #ffffff;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .application-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .application-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .application-steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .application-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    background: #fffbf5;
+    border-radius: 8px;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    background: #024638;
+    color: #f7ced7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .step-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.4;
+  }
+
+  .value-proposition {
+    background: #f7ced7;
+    border: 3px solid #024638;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .value-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #024638;
+    line-height: 1.4;
+  }
+
+  .value-highlight {
+    font-size: 24px;
+    font-weight: 900;
+    color: #024638;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .cost-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cost-item {
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 8px;
+    }
+  }
+</style>
+
+<div class="longevity-guide">
+  <div class="longevity-header">
+    <h3 class="longevity-title">How Long Will Your Jar Last?</h3>
+    <p class="longevity-subtitle">Understanding the true value of your investment</p>
+  </div>
+
+  <div class="guide-content">
+    <div class="jar-visual">
+      <div class="jar-icon">🫙</div>
+      <div class="jar-size">60ml Jar</div>
+      <div class="jar-weight">Approximately 55g net weight</div>
+    </div>
+
+    <div class="usage-cards">
+      <div class="usage-card">
+        <div class="usage-icon">🌙</div>
+        <div class="usage-frequency">Once Daily</div>
+        <div class="usage-duration">3+ Months</div>
+        <div class="usage-description">
+          Perfect for targeted evening treatment on problem areas
+        </div>
+      </div>
+
+      <div class="usage-card">
+        <div class="usage-icon">☀️</div>
+        <div class="usage-frequency">Twice Daily</div>
+        <div class="usage-duration">Minimum 6 Weeks</div>
+        <div class="usage-description">
+          Ideal for maximum results with morning and evening application
+        </div>
+      </div>
+    </div>
+
+    <div class="cost-breakdown">
+      <div class="cost-title">Cost Per Day Breakdown</div>
+      <div class="cost-grid">
+        <div class="cost-item">
+          <div class="cost-value">£1.40</div>
+          <div class="cost-label">Per Day (2x Daily)</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-value">£9.83</div>
+          <div class="cost-label">Per Week</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-value">£42</div>
+          <div class="cost-label">Per Month (6 weeks)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="application-guide">
+      <div class="application-title">Recommended Application Amount</div>
+      <div class="application-steps">
+        <div class="application-step">
+          <div class="step-number">1</div>
+          <div class="step-emoji">🫘</div>
+          <div class="step-text">
+            <strong>Pea-sized amount</strong> for face or small problem areas
+          </div>
+        </div>
+
+        <div class="application-step">
+          <div class="step-number">2</div>
+          <div class="step-emoji">🌰</div>
+          <div class="step-text">
+            <strong>Almond-sized amount</strong> for larger areas like arms or legs
+          </div>
+        </div>
+
+        <div class="application-step">
+          <div class="step-number">3</div>
+          <div class="step-emoji">✋</div>
+          <div class="step-text">
+            <strong>Warm between hands</strong> then massage gently into clean, dry skin
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="value-proposition">
+      <div class="value-text">
+        One jar replaces multiple skincare products
+      </div>
+      <div class="value-highlight">
+        Moisturizer + Treatment + Protection = Better Value
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Track when users view the longevity guide
+  const longevityGuide = document.querySelector('.longevity-guide');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'longevity_guide_viewed', {
+              'event_category': 'engagement'
+            });
+          }
+
+          if (typeof window.ShopifyAnalytics !== 'undefined') {
+            window.ShopifyAnalytics.lib.track('Longevity Guide Viewed', {});
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(longevityGuide);
+  }
+})();
+</script>

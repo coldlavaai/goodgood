@@ -1,0 +1,464 @@
+{%- comment -%}
+  Interactive Ingredient Explorer
+  Explains the science and benefits behind each ingredient
+  Clickable cards that expand to show detailed information
+{%- endcomment -%}
+
+<style>
+  .ingredient-explorer {
+    margin: 40px 0;
+    padding: 40px 20px;
+    background: #ffffff;
+    border: 3px solid #024638;
+    border-radius: 16px;
+  }
+
+  .explorer-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .explorer-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .explorer-subtitle {
+    font-size: 16px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .ingredients-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .ingredient-card {
+    background: #fffbf5;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ingredient-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 #024638;
+  }
+
+  .ingredient-card.active {
+    background: #f7ced7;
+    box-shadow: 6px 6px 0 #024638;
+  }
+
+  .ingredient-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .ingredient-icon {
+    font-size: 40px;
+    flex-shrink: 0;
+  }
+
+  .ingredient-title-group {
+    flex: 1;
+  }
+
+  .ingredient-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 4px;
+  }
+
+  .ingredient-tagline {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .expand-icon {
+    font-size: 24px;
+    color: #024638;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ingredient-card.active .expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .ingredient-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ingredient-card.active .ingredient-details {
+    max-height: 1000px;
+  }
+
+  .ingredient-content {
+    padding: 0 20px 20px 20px;
+    border-top: 2px dashed #024638;
+  }
+
+  .ingredient-section {
+    margin-top: 16px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #024638;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .section-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+  }
+
+  .benefits-list li {
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .benefits-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #16a34a;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .concentration-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #024638;
+    color: #f7ced7;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+
+  .science-note {
+    background: #e0f2fe;
+    border-left: 4px solid #0284c7;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    border-radius: 4px;
+  }
+
+  .science-note strong {
+    color: #0284c7;
+  }
+</style>
+
+<div class="ingredient-explorer">
+  <div class="explorer-header">
+    <h2 class="explorer-title">The Science Behind the Ingredients</h2>
+    <p class="explorer-subtitle">
+      Every ingredient is carefully selected for maximum effectiveness and skin health
+    </p>
+  </div>
+
+  <div class="ingredients-grid">
+    {%- comment -%} CBD {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">🌿</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">CBD (Cannabidiol)</div>
+          <div class="ingredient-tagline">Powerful anti-inflammatory compound</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              CBD is a natural compound derived from hemp that interacts with your skin's endocannabinoid system to reduce inflammation, soothe irritation, and promote healing.
+            </div>
+            <div class="concentration-badge">2400mg per jar</div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>Reduces inflammation and redness</li>
+              <li>Soothes irritated and sensitive skin</li>
+              <li>Helps balance oil production</li>
+              <li>Promotes skin healing and repair</li>
+              <li>Powerful antioxidant protection</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Clinical Evidence:</strong> Studies show CBD can reduce skin inflammation by up to 60% and significantly improve conditions like eczema and psoriasis.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} CBG {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">🍃</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">CBG (Cannabigerol)</div>
+          <div class="ingredient-tagline">The "mother of all cannabinoids"</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              CBG is a rare cannabinoid that works synergistically with CBD to enhance anti-inflammatory effects and promote cellular regeneration for healthier, younger-looking skin.
+            </div>
+            <div class="concentration-badge">600mg per jar</div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>Enhances CBD effectiveness (entourage effect)</li>
+              <li>Powerful antibacterial properties</li>
+              <li>Supports collagen production</li>
+              <li>Reduces appearance of fine lines</li>
+              <li>Promotes skin cell regeneration</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Clinical Evidence:</strong> Research indicates CBG has stronger antibacterial properties than traditional antibiotics for certain skin conditions.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Beeswax {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">🐝</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">Natural Beeswax</div>
+          <div class="ingredient-tagline">Nature's protective barrier</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              Beeswax creates a breathable, protective layer on your skin that locks in moisture without clogging pores, while providing vitamin A for cellular regeneration.
+            </div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>Creates protective moisture barrier</li>
+              <li>Rich in vitamin A for cell renewal</li>
+              <li>Natural antibacterial properties</li>
+              <li>Won't clog pores (non-comedogenic)</li>
+              <li>Soothes and softens skin</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Fun Fact:</strong> Beeswax has been used for skincare since ancient Egypt - Cleopatra herself was known to use it!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} MCT Oil {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">🥥</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">MCT Oil</div>
+          <div class="ingredient-tagline">Fast-absorbing hydration</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              Medium-chain triglycerides from coconut oil absorb quickly into skin, delivering deep hydration and helping CBD penetrate more effectively.
+            </div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>Lightweight, non-greasy texture</li>
+              <li>Enhances CBD absorption</li>
+              <li>Natural antimicrobial properties</li>
+              <li>Strengthens skin barrier</li>
+              <li>Balances skin's natural oils</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Why MCT?</strong> MCT oil has smaller molecular structure than regular coconut oil, allowing it to penetrate skin 10x faster.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Argan Oil {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">🌰</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">Argan Oil</div>
+          <div class="ingredient-tagline">Liquid gold for your skin</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              Rich in vitamin E, essential fatty acids, and antioxidants, argan oil nourishes deeply while protecting against environmental damage and premature aging.
+            </div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>High in vitamin E and antioxidants</li>
+              <li>Reduces signs of aging</li>
+              <li>Improves skin elasticity</li>
+              <li>Fades scars and stretch marks</li>
+              <li>Protects against UV damage</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Premium Quality:</strong> Argan oil contains 200% more vitamin E than olive oil, making it one of nature's most powerful anti-aging ingredients.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Vitamin E {%- endcomment -%}
+    <div class="ingredient-card" data-ingredient>
+      <div class="ingredient-header">
+        <div class="ingredient-icon">💊</div>
+        <div class="ingredient-title-group">
+          <div class="ingredient-name">Vitamin E</div>
+          <div class="ingredient-tagline">Antioxidant powerhouse</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="ingredient-details">
+        <div class="ingredient-content">
+          <div class="ingredient-section">
+            <div class="section-title">What It Does</div>
+            <div class="section-content">
+              A powerful antioxidant that neutralizes free radicals, protects against environmental damage, and helps skin retain moisture for a healthy, youthful glow.
+            </div>
+          </div>
+
+          <div class="ingredient-section">
+            <div class="section-title">Key Benefits</div>
+            <ul class="benefits-list">
+              <li>Fights free radical damage</li>
+              <li>Reduces appearance of scars</li>
+              <li>Protects against sun damage</li>
+              <li>Strengthens skin barrier function</li>
+              <li>Enhances wound healing</li>
+            </ul>
+          </div>
+
+          <div class="science-note">
+            <strong>Synergy:</strong> Vitamin E works synergistically with CBD and CBG to provide even more powerful antioxidant protection than any ingredient alone.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const ingredientCards = document.querySelectorAll('[data-ingredient]');
+
+  ingredientCards.forEach(card => {
+    const header = card.querySelector('.ingredient-header');
+
+    header.addEventListener('click', () => {
+      // Close other cards
+      ingredientCards.forEach(otherCard => {
+        if (otherCard !== card && otherCard.classList.contains('active')) {
+          otherCard.classList.remove('active');
+        }
+      });
+
+      // Toggle current card
+      card.classList.toggle('active');
+
+      // Track interaction
+      if (card.classList.contains('active')) {
+        const ingredientName = card.querySelector('.ingredient-name').textContent;
+
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'ingredient_explored', {
+            'event_category': 'engagement',
+            'event_label': ingredientName
+          });
+        }
+
+        if (typeof window.ShopifyAnalytics !== 'undefined') {
+          window.ShopifyAnalytics.lib.track('Ingredient Explored', {
+            ingredient: ingredientName
+          });
+        }
+      }
+    });
+  });
+})();
+</script>

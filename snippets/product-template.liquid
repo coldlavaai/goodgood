@@ -835,5 +835,19 @@
   </script>
 {% endif %}
 
+{%- comment -%} Phase 3: Enhanced User Experience Features {%- endcomment -%}
+
+{%- comment -%} Product size and longevity guide - helps justify price {%- endcomment -%}
+{% render 'product-longevity-guide' %}
+
+{%- comment -%} Interactive ingredient explorer - educates customers {%- endcomment -%}
+{% render 'ingredient-explorer' %}
+
+{%- comment -%} Before/After customer results - builds trust {%- endcomment -%}
+{% render 'before-after-gallery' %}
+
+{%- comment -%} Competitor comparison table - shows value proposition {%- endcomment -%}
+{% render 'competitor-comparison' %}
+
 {%- comment -%} Sticky Add to Cart for mobile conversions {%- endcomment -%}
 {% render 'sticky-add-to-cart', product: product %}

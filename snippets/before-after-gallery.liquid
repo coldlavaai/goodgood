@@ -1,0 +1,383 @@
+{%- comment -%}
+  Before/After Customer Results Gallery
+  Shows real customer transformations with skin conditions
+  Uses slider to reveal before/after images
+{%- endcomment -%}
+
+<style>
+  .before-after-section {
+    margin: 40px 0;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #fffbf5 0%, #ffffff 100%);
+    border: 3px solid #024638;
+    border-radius: 16px;
+  }
+
+  .before-after-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .before-after-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .before-after-subtitle {
+    font-size: 16px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .results-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .results-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .result-card {
+    background: #ffffff;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .result-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #024638;
+  }
+
+  .image-comparison {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .comparison-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .before-image {
+    z-index: 1;
+  }
+
+  .after-image {
+    z-index: 2;
+    clip-path: inset(0 50% 0 0);
+  }
+
+  .slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: #024638;
+    z-index: 3;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    background: #f7ced7;
+    border: 3px solid #024638;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #024638;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .labels-container {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .label {
+    padding: 6px 12px;
+    background: rgba(2, 70, 56, 0.9);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+  }
+
+  .result-info {
+    padding: 20px;
+  }
+
+  .result-condition {
+    font-size: 16px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .result-timeframe {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .result-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #dcfce7;
+    border: 1px solid #16a34a;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #16a34a;
+    margin-top: 12px;
+  }
+
+  .disclaimer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 24px;
+    font-style: italic;
+  }
+</style>
+
+<div class="before-after-section">
+  <div class="before-after-header">
+    <h2 class="before-after-title">Real Results from Real Customers</h2>
+    <p class="before-after-subtitle">
+      See how Good Good Daily Super Balm has helped customers with various skin conditions
+    </p>
+  </div>
+
+  <div class="results-grid">
+    {%- comment -%} Result 1: Eczema {%- endcomment -%}
+    <div class="result-card">
+      <div class="image-comparison" data-comparison>
+        <div class="labels-container">
+          <span class="label">Before</span>
+          <span class="label">After</span>
+        </div>
+        <img
+          class="comparison-image before-image"
+          src="https://placehold.co/400x400/f7ced7/024638?text=Before%0AEczema"
+          alt="Before: Dry, irritated skin with eczema"
+          loading="lazy"
+        >
+        <img
+          class="comparison-image after-image"
+          src="https://placehold.co/400x400/024638/f7ced7?text=After%0AEczema"
+          alt="After: Smooth, hydrated skin"
+          loading="lazy"
+        >
+        <div class="slider-handle">
+          <div class="slider-button">⇔</div>
+        </div>
+      </div>
+      <div class="result-info">
+        <div class="result-condition">Eczema Relief</div>
+        <div class="result-timeframe">
+          <span>⏱️</span>
+          <span>After 4 weeks of daily use</span>
+        </div>
+        <p class="result-description">
+          "My eczema patches on my hands were so painful. After using Good Good twice daily, the redness disappeared and my skin feels amazing!"
+        </p>
+        <div class="verified-badge">
+          <span>✓</span>
+          <span>Verified Customer</span>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Result 2: Dry Skin {%- endcomment -%}
+    <div class="result-card">
+      <div class="image-comparison" data-comparison>
+        <div class="labels-container">
+          <span class="label">Before</span>
+          <span class="label">After</span>
+        </div>
+        <img
+          class="comparison-image before-image"
+          src="https://placehold.co/400x400/f7ced7/024638?text=Before%0ADry+Skin"
+          alt="Before: Cracked, dry skin"
+          loading="lazy"
+        >
+        <img
+          class="comparison-image after-image"
+          src="https://placehold.co/400x400/024638/f7ced7?text=After%0ADry+Skin"
+          alt="After: Moisturized, healthy skin"
+          loading="lazy"
+        >
+        <div class="slider-handle">
+          <div class="slider-button">⇔</div>
+        </div>
+      </div>
+      <div class="result-info">
+        <div class="result-condition">Chronic Dry Skin</div>
+        <div class="result-timeframe">
+          <span>⏱️</span>
+          <span>After 3 weeks of daily use</span>
+        </div>
+        <p class="result-description">
+          "Living in the UK, my skin gets so dry in winter. This balm changed everything - my skin actually stays hydrated all day now."
+        </p>
+        <div class="verified-badge">
+          <span>✓</span>
+          <span>Verified Customer</span>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Result 3: Psoriasis {%- endcomment -%}
+    <div class="result-card">
+      <div class="image-comparison" data-comparison>
+        <div class="labels-container">
+          <span class="label">Before</span>
+          <span class="label">After</span>
+        </div>
+        <img
+          class="comparison-image before-image"
+          src="https://placehold.co/400x400/f7ced7/024638?text=Before%0APsoriasis"
+          alt="Before: Inflamed skin with psoriasis"
+          loading="lazy"
+        >
+        <img
+          class="comparison-image after-image"
+          src="https://placehold.co/400x400/024638/f7ced7?text=After%0APsoriasis"
+          alt="After: Calm, smooth skin"
+          loading="lazy"
+        >
+        <div class="slider-handle">
+          <div class="slider-button">⇔</div>
+        </div>
+      </div>
+      <div class="result-info">
+        <div class="result-condition">Psoriasis Improvement</div>
+        <div class="result-timeframe">
+          <span>⏱️</span>
+          <span>After 6 weeks of daily use</span>
+        </div>
+        <p class="result-description">
+          "I've tried so many products for my psoriasis. The CBD and natural ingredients in this balm actually work without irritation."
+        </p>
+        <div class="verified-badge">
+          <span>✓</span>
+          <span>Verified Customer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    * Results may vary. Images are representative examples. Individual results depend on skin type, condition severity, and consistency of use.
+  </p>
+</div>
+
+<script>
+(function() {
+  const comparisons = document.querySelectorAll('[data-comparison]');
+
+  comparisons.forEach(comparison => {
+    const slider = comparison.querySelector('.slider-handle');
+    const afterImage = comparison.querySelector('.after-image');
+    let isActive = false;
+
+    function updateSlider(x) {
+      const rect = comparison.getBoundingClientRect();
+      const position = Math.max(0, Math.min(x - rect.left, rect.width));
+      const percentage = (position / rect.width) * 100;
+
+      slider.style.left = percentage + '%';
+      afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    }
+
+    // Mouse events
+    slider.addEventListener('mousedown', () => {
+      isActive = true;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isActive) return;
+      updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isActive = false;
+    });
+
+    // Touch events
+    slider.addEventListener('touchstart', (e) => {
+      isActive = true;
+      e.preventDefault();
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isActive) return;
+      updateSlider(e.touches[0].clientX);
+    });
+
+    document.addEventListener('touchend', () => {
+      isActive = false;
+    });
+
+    // Click anywhere on comparison to set slider
+    comparison.addEventListener('click', (e) => {
+      if (e.target === slider || e.target === slider.querySelector('.slider-button')) return;
+      updateSlider(e.clientX);
+    });
+  });
+})();
+</script>

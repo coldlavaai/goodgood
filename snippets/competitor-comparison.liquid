@@ -1,0 +1,453 @@
+{%- comment -%}
+  Competitor Comparison Table
+  Shows why Good Good Daily Super Balm is the superior choice
+  Highlights key differentiators and value proposition
+{%- endcomment -%}
+
+<style>
+  .comparison-section {
+    margin: 40px 0;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #fffbf5 100%);
+    border: 3px solid #024638;
+    border-radius: 16px;
+  }
+
+  .comparison-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .comparison-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .comparison-subtitle {
+    font-size: 16px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .comparison-table-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 2px solid #024638;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    min-width: 600px;
+  }
+
+  .comparison-table thead {
+    background: #024638;
+    color: #ffffff;
+  }
+
+  .comparison-table th {
+    padding: 20px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .comparison-table th:first-child {
+    width: 35%;
+  }
+
+  .comparison-table th.good-good-col {
+    background: #f7ced7;
+    color: #024638;
+    border-left: 3px solid #024638;
+    border-right: 3px solid #024638;
+    position: relative;
+  }
+
+  .best-choice-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #16a34a;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .comparison-table tbody tr {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .comparison-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .comparison-table tbody tr:nth-child(even) {
+    background: #fffbf5;
+  }
+
+  .comparison-table td {
+    padding: 16px;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  .comparison-table td:first-child {
+    font-weight: 600;
+    color: #024638;
+  }
+
+  .good-good-col {
+    background: #f7ced7 !important;
+    border-left: 3px solid #024638;
+    border-right: 3px solid #024638;
+    font-weight: 600;
+  }
+
+  .feature-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feature-icon {
+    font-size: 20px;
+  }
+
+  .check-icon {
+    color: #16a34a;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .cross-icon {
+    color: #dc2626;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .value-text {
+    color: #666;
+  }
+
+  .highlight-text {
+    color: #024638;
+    font-weight: 700;
+  }
+
+  .price-row td {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 20px 16px;
+  }
+
+  .price-row .good-good-col {
+    color: #024638;
+  }
+
+  .summary-box {
+    margin-top: 24px;
+    padding: 20px;
+    background: #dcfce7;
+    border: 2px solid #16a34a;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .summary-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #024638;
+    margin-bottom: 12px;
+  }
+
+  .summary-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #16a34a;
+  }
+
+  .summary-feature {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 8px;
+      font-size: 13px;
+    }
+
+    .comparison-title {
+      font-size: 26px;
+    }
+  }
+</style>
+
+<div class="comparison-section">
+  <div class="comparison-header">
+    <h2 class="comparison-title">Why Choose Good Good Daily Super Balm?</h2>
+    <p class="comparison-subtitle">
+      Compare us to other popular skin balms and see the difference
+    </p>
+  </div>
+
+  <div class="comparison-table-wrapper">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="good-good-col">
+            <span class="best-choice-badge">⭐ BEST CHOICE</span>
+            Good Good Balm
+          </th>
+          <th>CeraVe Healing Ointment</th>
+          <th>Aquaphor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🌿</span>
+              <span>CBD Content</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="highlight-text">2400mg</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🍃</span>
+              <span>CBG Content</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="highlight-text">600mg</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🌱</span>
+              <span>100% Natural Ingredients</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🐰</span>
+              <span>Cruelty Free</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="check-icon">✓</span></td>
+          <td><span class="value-text">Unknown</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🌴</span>
+              <span>Palm Oil Free</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🧪</span>
+              <span>No Synthetic Chemicals</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🥥</span>
+              <span>Premium Oils (Argan, MCT)</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="cross-icon">✗</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🇬🇧</span>
+              <span>Made in UK</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="value-text">USA</span></td>
+          <td><span class="value-text">USA</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">💧</span>
+              <span>Non-Greasy Formula</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="check-icon">✓</span>
+          </td>
+          <td><span class="value-text">Somewhat</span></td>
+          <td><span class="cross-icon">✗</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🩹</span>
+              <span>Targets Inflammation</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="highlight-text">Advanced (CBD+CBG)</span>
+          </td>
+          <td><span class="value-text">Basic</span></td>
+          <td><span class="value-text">Basic</span></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">🧴</span>
+              <span>Jar Size</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="highlight-text">60ml</span>
+          </td>
+          <td><span class="value-text">48g</span></td>
+          <td><span class="value-text">50g</span></td>
+        </tr>
+
+        <tr class="price-row">
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">💷</span>
+              <span>Price</span>
+            </div>
+          </td>
+          <td class="good-good-col">£59.00</td>
+          <td>£12.99</td>
+          <td>£8.99</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="feature-name">
+              <span class="feature-icon">⭐</span>
+              <span>Value for Quality</span>
+            </div>
+          </td>
+          <td class="good-good-col">
+            <span class="highlight-text">Premium ingredients justify price</span>
+          </td>
+          <td><span class="value-text">Budget option</span></td>
+          <td><span class="value-text">Budget option</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-text">
+      Good Good Daily Super Balm offers superior natural ingredients with powerful CBD + CBG for real results
+    </div>
+    <div class="summary-features">
+      <span class="summary-feature"><span>✓</span> 100% Natural</span>
+      <span class="summary-feature"><span>✓</span> Clinically Effective</span>
+      <span class="summary-feature"><span>✓</span> Cruelty Free</span>
+      <span class="summary-feature"><span>✓</span> Made in UK</span>
+      <span class="summary-feature"><span>✓</span> Palm Oil Free</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Track when users view the comparison table
+  const comparisonSection = document.querySelector('.comparison-section');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'comparison_table_viewed', {
+              'event_category': 'engagement'
+            });
+          }
+
+          if (typeof window.ShopifyAnalytics !== 'undefined') {
+            window.ShopifyAnalytics.lib.track('Comparison Table Viewed', {});
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(comparisonSection);
+  }
+})();
+</script>
