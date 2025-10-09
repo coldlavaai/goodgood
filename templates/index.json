@@ -111,6 +111,10 @@
       "type": "problem-agitate",
       "settings": {}
     },
+    "solution": {
+      "type": "solution",
+      "settings": {}
+    },
     "image_with_text_XQN4db": {
       "type": "image-with-text",
       "custom_css": [],
@@ -445,6 +449,7 @@
     "scrolling_text_with_icons",
     "hero_killer",
     "problem_agitate",
+    "solution",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",
