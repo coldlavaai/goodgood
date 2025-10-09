@@ -107,6 +107,10 @@
       "type": "hero-killer",
       "settings": {}
     },
+    "problem_agitate": {
+      "type": "problem-agitate",
+      "settings": {}
+    },
     "image_with_text_XQN4db": {
       "type": "image-with-text",
       "custom_css": [],
@@ -440,6 +444,7 @@
     "image_with_text",
     "scrolling_text_with_icons",
     "hero_killer",
+    "problem_agitate",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",
