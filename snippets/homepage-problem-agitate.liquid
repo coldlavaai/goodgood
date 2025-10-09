@@ -1,0 +1,323 @@
+{%- comment -%}
+  Problem-Agitate Section
+  Emotionally connects with customer pain points
+  Makes them FEEL the problem before presenting solution
+{%- endcomment -%}
+
+<style>
+  .problem-agitate-section {
+    background: linear-gradient(180deg, #ffffff 0%, #fffbf5 100%);
+    padding: 80px 20px;
+  }
+
+  .problem-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .problem-eyebrow {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #024638;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .problem-headline {
+    font-size: 42px;
+    font-weight: 900;
+    color: #024638;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .problem-pain-points {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .problem-pain-points {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .pain-point {
+    background: #ffffff;
+    border: 2px solid #f7ced7;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pain-point::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: #024638;
+  }
+
+  .pain-point:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(2, 70, 56, 0.15);
+    border-color: #024638;
+  }
+
+  .pain-point-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .pain-point-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  .pain-point-description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .agitate-quote {
+    background: rgba(247, 206, 215, 0.2);
+    border-left: 6px solid #024638;
+    border-radius: 8px;
+    padding: 32px;
+    margin: 48px 0;
+    position: relative;
+  }
+
+  .agitate-quote-icon {
+    font-size: 48px;
+    color: #f7ced7;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    opacity: 0.5;
+  }
+
+  .agitate-quote-text {
+    font-size: 20px;
+    font-style: italic;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding-left: 40px;
+  }
+
+  .agitate-quote-author {
+    font-size: 14px;
+    color: #024638;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .problem-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 2px solid #f7ced7;
+    border-bottom: 2px solid #f7ced7;
+  }
+
+  .problem-stat {
+    text-align: center;
+  }
+
+  .problem-stat-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #024638;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .problem-stat-label {
+    font-size: 13px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .problem-cta {
+    margin-top: 48px;
+  }
+
+  .problem-cta-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .problem-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 48px;
+    background: #024638;
+    color: #f7ced7;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #024638;
+    box-shadow: 0 4px 12px rgba(2, 70, 56, 0.3);
+  }
+
+  .problem-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(2, 70, 56, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .problem-agitate-section {
+      padding: 48px 16px;
+    }
+
+    .problem-headline {
+      font-size: 32px;
+    }
+
+    .agitate-quote-text {
+      font-size: 18px;
+      padding-left: 0;
+    }
+
+    .agitate-quote-icon {
+      display: none;
+    }
+
+    .problem-stat-number {
+      font-size: 36px;
+    }
+
+    .problem-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+    }
+  }
+</style>
+
+<section class="problem-agitate-section">
+  <div class="problem-container">
+    <div class="problem-eyebrow">You're Not Alone</div>
+
+    <h2 class="problem-headline">
+      Tired of Creams That Don't Work?<br>
+      Sick of the Steroid Cycle?
+    </h2>
+
+    <div class="problem-pain-points">
+      <div class="pain-point">
+        <div class="pain-point-icon">😣</div>
+        <div class="pain-point-title">Endless Itching & Flare-Ups</div>
+        <div class="pain-point-description">
+          You wake up scratching. You go to bed scratching. The itch never truly goes away, and every flare-up feels like starting from zero again.
+        </div>
+      </div>
+
+      <div class="pain-point">
+        <div class="pain-point-icon">💊</div>
+        <div class="pain-point-title">Steroid Cream Dependence</div>
+        <div class="pain-point-description">
+          Your GP prescribed another steroid cream. It works for a week, then stops. Your skin gets thinner. You're trapped in a cycle that never ends.
+        </div>
+      </div>
+
+      <div class="pain-point">
+        <div class="pain-point-icon">🛒</div>
+        <div class="pain-point-title">Wasted Money on "Solutions"</div>
+        <div class="pain-point-description">
+          You've tried EVERYTHING. £100s spent on creams, oils, and "miracle" treatments that promise relief but deliver nothing. You're skeptical of anything new.
+        </div>
+      </div>
+
+      <div class="pain-point">
+        <div class="pain-point-icon">😔</div>
+        <div class="pain-point-title">Self-Conscious About Your Skin</div>
+        <div class="pain-point-description">
+          You hide your hands. You avoid short sleeves. You feel embarrassed when people notice your skin. It affects your confidence every single day.
+        </div>
+      </div>
+    </div>
+
+    <div class="agitate-quote">
+      <div class="agitate-quote-icon">"</div>
+      <div class="agitate-quote-text">
+        "I was so desperate I'd try anything. I'd spent hundreds on creams that did NOTHING. My eczema was ruining my life. I couldn't even shake hands without feeling self-conscious."
+      </div>
+      <div class="agitate-quote-author">— Tara S., Verified Customer</div>
+    </div>
+
+    <div class="problem-stats">
+      <div class="problem-stat">
+        <div class="problem-stat-number">73%</div>
+        <div class="problem-stat-label">Stop using steroid creams<br>due to side effects</div>
+      </div>
+
+      <div class="problem-stat">
+        <div class="problem-stat-number">£400+</div>
+        <div class="problem-stat-label">Average spent per year<br>on failed treatments</div>
+      </div>
+
+      <div class="problem-stat">
+        <div class="problem-stat-number">89%</div>
+        <div class="problem-stat-label">Feel embarrassed<br>about their skin</div>
+      </div>
+    </div>
+
+    <div class="problem-cta">
+      <p class="problem-cta-text">
+        <strong>There IS a better way.</strong> And thousands have already found it.
+      </p>
+      <a href="/products/good-good-daily-super-balm" class="problem-cta-button">
+        <span>Show Me The Solution</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const ctaButton = document.querySelector('.problem-cta-button');
+
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'problem_agitate_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_problem_agitate_show_solution'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Problem-Agitate CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Show Me The Solution'
+        });
+      }
+    });
+  }
+})();
+</script>

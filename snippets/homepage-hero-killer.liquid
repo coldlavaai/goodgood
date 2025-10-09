@@ -1,0 +1,316 @@
+{%- comment -%}
+  Ultimate Conversion-Optimized Hero Section
+  Problem-Agitate-Solution copy that SELLS
+{%- endcomment -%}
+
+{%- assign featured_product = all_products['good-good-daily-super-balm'] -%}
+
+<style>
+  .killer-hero {
+    position: relative;
+    background: linear-gradient(135deg, #fffbf5 0%, #ffffff 100%);
+    padding: 80px 20px;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .killer-hero {
+      padding: 120px 40px;
+    }
+
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-content {
+      text-align: left;
+    }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: #dcfce7;
+    border: 2px solid #16a34a;
+    color: #16a34a;
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .hero-headline {
+    font-size: 48px;
+    font-weight: 900;
+    color: #024638;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero-headline-highlight {
+    color: #f7ced7;
+    text-shadow: 2px 2px 0 #024638;
+  }
+
+  .hero-subheadline {
+    font-size: 22px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .hero-problem {
+    background: rgba(247, 206, 215, 0.3);
+    border-left: 4px solid #024638;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+  }
+
+  .hero-cta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-cta-section {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .hero-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 40px;
+    background: #024638;
+    color: #f7ced7;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #024638;
+    box-shadow: 0 4px 12px rgba(2, 70, 56, 0.3);
+  }
+
+  .hero-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(2, 70, 56, 0.4);
+  }
+
+  .hero-cta-secondary {
+    font-size: 14px;
+    color: #666;
+    text-decoration: underline;
+  }
+
+  .hero-trust-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #e5e5e5;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-trust-signals {
+      justify-content: flex-start;
+    }
+  }
+
+  .trust-signal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #024638;
+    font-weight: 600;
+  }
+
+  .trust-signal-icon {
+    font-size: 20px;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-overlay-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #024638;
+    color: #f7ced7;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 3px solid #f7ced7;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .overlay-badge-text {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .overlay-badge-rating {
+    font-size: 24px;
+    font-weight: 900;
+    color: #f7ced7;
+  }
+
+  @media (max-width: 768px) {
+    .killer-hero {
+      padding: 48px 16px;
+    }
+
+    .hero-headline {
+      font-size: 36px;
+    }
+
+    .hero-subheadline {
+      font-size: 18px;
+    }
+
+    .hero-cta-primary {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+    }
+  }
+</style>
+
+<section class="killer-hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">✓ 100% 5-STAR TRUSTPILOT REVIEWS</div>
+
+      <h1 class="hero-headline">
+        Stop Suffering.<br>
+        Start <span class="hero-headline-highlight">Healing.</span>
+      </h1>
+
+      <p class="hero-subheadline">
+        The natural CBD balm that's replacing steroid creams for thousands of people with eczema, psoriasis, and chronic dry skin.
+      </p>
+
+      <div class="hero-problem">
+        "I tried 100s of different creams over the years and nothing worked... until I found Good Good Balm." - Josh T.
+      </div>
+
+      <div class="hero-cta-section">
+        <a href="/products/good-good-daily-super-balm" class="hero-cta-primary">
+          <span>Get Relief Now</span>
+          <span>→</span>
+        </a>
+        <span class="hero-cta-secondary">Ships within 24 hours • FREE UK delivery</span>
+      </div>
+
+      <div class="hero-trust-signals">
+        <div class="trust-signal">
+          <span class="trust-signal-icon">⚡</span>
+          <span>Results in 24hrs</span>
+        </div>
+        <div class="trust-signal">
+          <span class="trust-signal-icon">🌿</span>
+          <span>100% Natural</span>
+        </div>
+        <div class="trust-signal">
+          <span class="trust-signal-icon">🇬🇧</span>
+          <span>Made in UK</span>
+        </div>
+        <div class="trust-signal">
+          <span class="trust-signal-icon">🚫</span>
+          <span>No Steroids</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-image-wrapper">
+        {% if featured_product.featured_image %}
+          <img
+            src="{{ featured_product.featured_image | img_url: '800x800' }}"
+            alt="Good Good CBD Balm - Natural relief for eczema and psoriasis"
+            class="hero-image"
+          >
+        {% else %}
+          <div style="width: 100%; aspect-ratio: 1; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 120px;">🫙</span>
+          </div>
+        {% endif %}
+
+        <div class="hero-overlay-badge">
+          <div class="overlay-badge-text">Trustpilot Rating</div>
+          <div class="overlay-badge-rating">★★★★★ 4.4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const heroCTA = document.querySelector('.hero-cta-primary');
+
+  if (heroCTA) {
+    heroCTA.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'hero_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_hero_get_relief_now'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Hero CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Get Relief Now'
+        });
+      }
+    });
+  }
+})();
+</script>

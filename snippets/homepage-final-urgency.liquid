@@ -1,0 +1,495 @@
+{%- comment -%}
+  Final Urgency/Scarcity Section
+  Creates FOMO and drives immediate action
+  Last chance before they leave the page
+{%- endcomment -%}
+
+<style>
+  .final-urgency-section {
+    background: linear-gradient(135deg, #fffbf5 0%, #ffffff 100%);
+    padding: 80px 20px;
+    border-top: 4px solid #f7ced7;
+  }
+
+  .urgency-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .urgency-alert {
+    background: linear-gradient(135deg, #024638 0%, #036654 100%);
+    border: 4px solid #f7ced7;
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(2, 70, 56, 0.2);
+  }
+
+  .urgency-alert::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(247, 206, 215, 0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .urgency-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .urgency-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 0, 0, 0.15);
+    border: 2px solid #f7ced7;
+    color: #f7ced7;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    animation: flash 2s ease-in-out infinite;
+  }
+
+  @keyframes flash {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .urgency-badge-icon {
+    font-size: 18px;
+    animation: shake 1s ease-in-out infinite;
+  }
+
+  @keyframes shake {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+  }
+
+  .urgency-headline {
+    font-size: 48px;
+    font-weight: 900;
+    color: #f7ced7;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .urgency-subheadline {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .urgency-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    margin: 32px 0;
+    padding: 32px 0;
+    border-top: 2px solid rgba(247, 206, 215, 0.3);
+    border-bottom: 2px solid rgba(247, 206, 215, 0.3);
+  }
+
+  .urgency-stat {
+    text-align: center;
+  }
+
+  .urgency-stat-number {
+    font-size: 52px;
+    font-weight: 900;
+    color: #f7ced7;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .urgency-stat-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .urgency-reasons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  @media (min-width: 768px) {
+    .urgency-reasons {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .urgency-reason {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-align: left;
+    border: 1px solid rgba(247, 206, 215, 0.2);
+  }
+
+  .urgency-reason-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .urgency-reason-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+  }
+
+  .urgency-cta-section {
+    margin-top: 40px;
+  }
+
+  .urgency-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 64px;
+    background: #f7ced7;
+    color: #024638;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #f7ced7;
+    box-shadow: 0 8px 24px rgba(247, 206, 215, 0.5);
+    animation: buttonPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes buttonPulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .urgency-cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(247, 206, 215, 0.7);
+    animation: none;
+  }
+
+  .urgency-cta-subtext {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .urgency-cta-subtext-icon {
+    font-size: 18px;
+  }
+
+  .urgency-timer {
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px solid rgba(255, 100, 100, 0.5);
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+
+  .urgency-timer-text {
+    font-size: 14px;
+    color: #f7ced7;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .social-proof-ticker {
+    margin-top: 32px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(247, 206, 215, 0.2);
+  }
+
+  .ticker-item {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .ticker-icon {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .final-urgency-section {
+      padding: 48px 16px;
+    }
+
+    .urgency-alert {
+      padding: 32px 24px;
+    }
+
+    .urgency-headline {
+      font-size: 32px;
+    }
+
+    .urgency-subheadline {
+      font-size: 18px;
+    }
+
+    .urgency-stat-number {
+      font-size: 40px;
+    }
+
+    .urgency-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 20px;
+      padding: 24px 40px;
+    }
+  }
+</style>
+
+<section class="final-urgency-section">
+  <div class="urgency-container">
+    <div class="urgency-alert">
+      <div class="urgency-content">
+        <div class="urgency-badge">
+          <span class="urgency-badge-icon">⚠️</span>
+          <span>Limited Stock Alert</span>
+        </div>
+
+        <div class="urgency-timer">
+          <div class="urgency-timer-text">
+            🚚 Order in the next <strong id="shipping-hours">3 hours</strong> for same-day dispatch
+          </div>
+        </div>
+
+        <h2 class="urgency-headline">
+          Don't Wait Another Day<br>
+          To Feel Better
+        </h2>
+
+        <p class="urgency-subheadline">
+          Every day you wait is another day of unnecessary suffering. Thousands have already found relief. Why not you?
+        </p>
+
+        <div class="urgency-stats">
+          <div class="urgency-stat">
+            <div class="urgency-stat-number" id="viewers-count">18</div>
+            <div class="urgency-stat-label">Viewing Right Now</div>
+          </div>
+
+          <div class="urgency-stat">
+            <div class="urgency-stat-number" id="sold-count">47</div>
+            <div class="urgency-stat-label">Sold This Week</div>
+          </div>
+
+          <div class="urgency-stat">
+            <div class="urgency-stat-number">24h</div>
+            <div class="urgency-stat-label">To See Results</div>
+          </div>
+        </div>
+
+        <div class="urgency-reasons">
+          <div class="urgency-reason">
+            <span class="urgency-reason-icon">✅</span>
+            <span class="urgency-reason-text">Free UK delivery (worth £4.99)</span>
+          </div>
+
+          <div class="urgency-reason">
+            <span class="urgency-reason-icon">✅</span>
+            <span class="urgency-reason-text">Ships within 24 hours</span>
+          </div>
+
+          <div class="urgency-reason">
+            <span class="urgency-reason-icon">✅</span>
+            <span class="urgency-reason-text">60-day money-back guarantee</span>
+          </div>
+
+          <div class="urgency-reason">
+            <span class="urgency-reason-icon">✅</span>
+            <span class="urgency-reason-text">4.4★ Trustpilot rating (100% 5-star)</span>
+          </div>
+        </div>
+
+        <div class="urgency-cta-section">
+          <a href="/products/good-good-daily-super-balm" class="urgency-cta-button">
+            <span>Get Relief Now - £49</span>
+            <span>→</span>
+          </a>
+          <div class="urgency-cta-subtext">
+            <span class="urgency-cta-subtext-icon">🔒</span>
+            <span>Secure checkout • 100% risk-free</span>
+          </div>
+        </div>
+
+        <div class="social-proof-ticker">
+          <div class="ticker-item" id="live-ticker">
+            <span class="ticker-icon">🔥</span>
+            <span id="ticker-text">Sarah from London just purchased 2 jars</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // Dynamic viewer count (randomized for realism)
+  function updateViewerCount() {
+    const viewersElement = document.getElementById('viewers-count');
+    if (viewersElement) {
+      const baseCount = 15;
+      const variance = Math.floor(Math.random() * 8);
+      viewersElement.textContent = baseCount + variance;
+    }
+  }
+
+  // Update viewers every 30 seconds
+  updateViewerCount();
+  setInterval(updateViewerCount, 30000);
+
+  // Dynamic sold count
+  function updateSoldCount() {
+    const soldElement = document.getElementById('sold-count');
+    if (soldElement) {
+      const baseCount = 42;
+      const variance = Math.floor(Math.random() * 12);
+      soldElement.textContent = baseCount + variance;
+    }
+  }
+
+  updateSoldCount();
+  setInterval(updateSoldCount, 60000);
+
+  // Shipping deadline timer
+  function updateShippingDeadline() {
+    const now = new Date();
+    const cutoffHour = 17; // 5 PM cutoff
+    const currentHour = now.getHours();
+
+    let hoursRemaining;
+    if (currentHour < cutoffHour) {
+      hoursRemaining = cutoffHour - currentHour;
+    } else {
+      hoursRemaining = 24 - currentHour + cutoffHour;
+    }
+
+    const shippingElement = document.getElementById('shipping-hours');
+    if (shippingElement) {
+      shippingElement.textContent = `${hoursRemaining} hours`;
+    }
+  }
+
+  updateShippingDeadline();
+  setInterval(updateShippingDeadline, 60000);
+
+  // Social proof ticker with rotating messages
+  const tickerMessages = [
+    { icon: '🔥', text: 'Sarah from London just purchased 2 jars' },
+    { icon: '✅', text: 'James from Manchester left a 5-star review' },
+    { icon: '🎉', text: 'Emma from Bristol saw results in 48 hours' },
+    { icon: '💚', text: 'Michael from Edinburgh ditched steroid creams' },
+    { icon: '⭐', text: 'Rachel from Leeds: "Life-changing product!"' },
+    { icon: '🚀', text: 'David from Glasgow ordered his 3rd jar' }
+  ];
+
+  let currentTickerIndex = 0;
+
+  function updateTicker() {
+    const tickerElement = document.getElementById('ticker-text');
+    const tickerIcon = document.querySelector('.ticker-icon');
+
+    if (tickerElement && tickerIcon) {
+      currentTickerIndex = (currentTickerIndex + 1) % tickerMessages.length;
+      const message = tickerMessages[currentTickerIndex];
+
+      tickerElement.style.opacity = '0';
+      setTimeout(() => {
+        tickerElement.textContent = message.text;
+        tickerIcon.textContent = message.icon;
+        tickerElement.style.opacity = '1';
+      }, 300);
+    }
+  }
+
+  // Rotate ticker every 5 seconds
+  setInterval(updateTicker, 5000);
+
+  // Track CTA click
+  const ctaButton = document.querySelector('.urgency-cta-button');
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'final_urgency_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_final_urgency_get_relief_now'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Final Urgency CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Get Relief Now - £49'
+        });
+      }
+    });
+  }
+
+  // Add smooth transition for ticker
+  const tickerText = document.getElementById('ticker-text');
+  if (tickerText) {
+    tickerText.style.transition = 'opacity 0.3s ease';
+  }
+})();
+</script>

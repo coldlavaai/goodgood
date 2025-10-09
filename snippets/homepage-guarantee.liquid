@@ -1,0 +1,438 @@
+{%- comment -%}
+  Guarantee & Risk Reversal Section
+  Eliminates purchase hesitation with iron-clad guarantee
+  Builds trust and removes all risk from the decision
+{%- endcomment -%}
+
+<style>
+  .guarantee-section {
+    background: linear-gradient(135deg, #024638 0%, #036654 100%);
+    color: #ffffff;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guarantee-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(247,206,215,0.1)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .guarantee-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .guarantee-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .guarantee-badge-container {
+    margin-bottom: 24px;
+  }
+
+  .guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #f7ced7;
+    color: #024638;
+    padding: 12px 32px;
+    border-radius: 48px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .guarantee-badge-icon {
+    font-size: 28px;
+  }
+
+  .guarantee-headline {
+    font-size: 52px;
+    font-weight: 900;
+    color: #f7ced7;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .guarantee-subheadline {
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .guarantee-main {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid #f7ced7;
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 48px;
+    backdrop-filter: blur(10px);
+  }
+
+  .guarantee-promise {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .guarantee-promise-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #f7ced7;
+    margin-bottom: 16px;
+  }
+
+  .guarantee-promise-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .guarantee-promise-text strong {
+    color: #f7ced7;
+    font-weight: 700;
+  }
+
+  .guarantee-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  @media (min-width: 768px) {
+    .guarantee-features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .guarantee-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(247, 206, 215, 0.3);
+  }
+
+  .guarantee-feature-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .guarantee-feature-content {
+    flex: 1;
+  }
+
+  .guarantee-feature-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f7ced7;
+    margin-bottom: 6px;
+  }
+
+  .guarantee-feature-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+  }
+
+  .guarantee-seal {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 2px solid rgba(247, 206, 215, 0.3);
+  }
+
+  .guarantee-seal-graphic {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    background: #f7ced7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .guarantee-seal-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f7ced7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .guarantee-benefits {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  @media (min-width: 1024px) {
+    .guarantee-benefits {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .guarantee-benefit {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 32px 24px;
+    border-radius: 16px;
+    border: 2px solid rgba(247, 206, 215, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .guarantee-benefit:hover {
+    transform: translateY(-5px);
+    border-color: #f7ced7;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .guarantee-benefit-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .guarantee-benefit-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f7ced7;
+    margin-bottom: 8px;
+  }
+
+  .guarantee-benefit-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  .guarantee-cta {
+    text-align: center;
+    margin-top: 56px;
+  }
+
+  .guarantee-cta-text {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .guarantee-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 56px;
+    background: #f7ced7;
+    color: #024638;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #f7ced7;
+    box-shadow: 0 8px 24px rgba(247, 206, 215, 0.4);
+  }
+
+  .guarantee-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(247, 206, 215, 0.6);
+  }
+
+  .guarantee-cta-subtext {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .guarantee-section {
+      padding: 48px 16px;
+    }
+
+    .guarantee-headline {
+      font-size: 36px;
+    }
+
+    .guarantee-subheadline {
+      font-size: 18px;
+    }
+
+    .guarantee-main {
+      padding: 32px 24px;
+    }
+
+    .guarantee-promise-title {
+      font-size: 22px;
+    }
+
+    .guarantee-promise-text {
+      font-size: 16px;
+    }
+
+    .guarantee-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+      padding: 20px 40px;
+    }
+  }
+</style>
+
+<section class="guarantee-section">
+  <div class="guarantee-container">
+    <div class="guarantee-header">
+      <div class="guarantee-badge-container">
+        <div class="guarantee-badge">
+          <span class="guarantee-badge-icon">🛡️</span>
+          <span>100% Risk-Free</span>
+        </div>
+      </div>
+
+      <h2 class="guarantee-headline">
+        Love It or Your Money Back.<br>
+        No Questions Asked.
+      </h2>
+
+      <p class="guarantee-subheadline">
+        We're so confident Good Good Balm will work for you that we offer an iron-clad, industry-leading guarantee.
+      </p>
+    </div>
+
+    <div class="guarantee-main">
+      <div class="guarantee-promise">
+        <div class="guarantee-promise-title">Our Promise To You</div>
+        <p class="guarantee-promise-text">
+          Try Good Good Balm for <strong>60 full days</strong>. If you don't see a dramatic improvement in your skin, or if you're unhappy for ANY reason, we'll refund every penny. <strong>Keep the jar.</strong> No return shipping. No hassle. No questions.
+        </p>
+      </div>
+
+      <div class="guarantee-features">
+        <div class="guarantee-feature">
+          <div class="guarantee-feature-icon">✅</div>
+          <div class="guarantee-feature-content">
+            <div class="guarantee-feature-title">Full 60-Day Money-Back Guarantee</div>
+            <div class="guarantee-feature-text">Two full months to see if it works for you. That's twice as long as most brands.</div>
+          </div>
+        </div>
+
+        <div class="guarantee-feature">
+          <div class="guarantee-feature-icon">📦</div>
+          <div class="guarantee-feature-content">
+            <div class="guarantee-feature-title">Keep The Jar Even If You Refund</div>
+            <div class="guarantee-feature-text">No need to ship it back. We trust you, and we want you to try it risk-free.</div>
+          </div>
+        </div>
+
+        <div class="guarantee-feature">
+          <div class="guarantee-feature-icon">💬</div>
+          <div class="guarantee-feature-content">
+            <div class="guarantee-feature-title">No Questions Asked</div>
+            <div class="guarantee-feature-text">Didn't work? No problem. One email and we'll process your refund within 24 hours.</div>
+          </div>
+        </div>
+
+        <div class="guarantee-feature">
+          <div class="guarantee-feature-icon">🚚</div>
+          <div class="guarantee-feature-content">
+            <div class="guarantee-feature-title">Free UK Delivery (Worth £4.99)</div>
+            <div class="guarantee-feature-text">Ships within 24 hours. Track your order every step of the way.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guarantee-seal">
+        <div class="guarantee-seal-graphic">🏆</div>
+        <div class="guarantee-seal-text">Good Good Balm Guarantee</div>
+      </div>
+    </div>
+
+    <div class="guarantee-benefits">
+      <div class="guarantee-benefit">
+        <div class="guarantee-benefit-icon">💚</div>
+        <div class="guarantee-benefit-title">Zero Risk To You</div>
+        <div class="guarantee-benefit-text">
+          You literally have nothing to lose. Try it for 60 days. If it doesn't work, get your money back.
+        </div>
+      </div>
+
+      <div class="guarantee-benefit">
+        <div class="guarantee-benefit-icon">🎯</div>
+        <div class="guarantee-benefit-title">Results in 24 Hours</div>
+        <div class="guarantee-benefit-text">
+          Most customers see improvement within the first day. Reduced redness, less itching, softer skin.
+        </div>
+      </div>
+
+      <div class="guarantee-benefit">
+        <div class="guarantee-benefit-icon">🇬🇧</div>
+        <div class="guarantee-benefit-title">UK-Made Quality</div>
+        <div class="guarantee-benefit-text">
+          Handcrafted in the UK with premium natural ingredients. No corners cut. No compromises.
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee-cta">
+      <p class="guarantee-cta-text">
+        <strong>Still on the fence?</strong> There's literally zero risk. Try it now.
+      </p>
+      <a href="/products/good-good-daily-super-balm" class="guarantee-cta-button">
+        <span>Claim Your Risk-Free Jar</span>
+        <span>→</span>
+      </a>
+      <p class="guarantee-cta-subtext">
+        60-day money-back guarantee • Free UK delivery • Ships today
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const ctaButton = document.querySelector('.guarantee-cta-button');
+
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'guarantee_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_guarantee_claim_risk_free'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Guarantee CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Claim Your Risk-Free Jar'
+        });
+      }
+    });
+  }
+})();
+</script>

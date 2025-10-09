@@ -1,0 +1,468 @@
+{%- comment -%}
+  Solution Section
+  Shows HOW Good Good Balm solves their problems differently
+  Explains the science and unique approach
+{%- endcomment -%}
+
+{%- assign featured_product = all_products['good-good-daily-super-balm'] -%}
+
+<style>
+  .solution-section {
+    background: #024638;
+    color: #ffffff;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(247, 206, 215, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .solution-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .solution-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .solution-eyebrow {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #f7ced7;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .solution-headline {
+    font-size: 48px;
+    font-weight: 900;
+    color: #f7ced7;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .solution-subheadline {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 1024px) {
+    .solution-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .solution-content {
+    order: 2;
+  }
+
+  @media (min-width: 1024px) {
+    .solution-content {
+      order: 1;
+    }
+  }
+
+  .solution-visual {
+    order: 1;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .solution-visual {
+      order: 2;
+    }
+  }
+
+  .solution-features {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .solution-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .solution-feature-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    background: rgba(247, 206, 215, 0.2);
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #f7ced7;
+  }
+
+  .solution-feature-content {
+    flex: 1;
+  }
+
+  .solution-feature-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f7ced7;
+    margin-bottom: 8px;
+  }
+
+  .solution-feature-description {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  .solution-product-showcase {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid #f7ced7;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .solution-product-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+
+  .solution-badge {
+    display: inline-block;
+    background: #f7ced7;
+    color: #024638;
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .solution-difference {
+    background: rgba(247, 206, 215, 0.1);
+    border-radius: 12px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .solution-difference-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #f7ced7;
+    margin-bottom: 32px;
+  }
+
+  .solution-comparison {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .solution-comparison {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .comparison-column {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .comparison-column.bad {
+    border: 2px solid rgba(255, 0, 0, 0.3);
+  }
+
+  .comparison-column.good {
+    border: 2px solid #f7ced7;
+  }
+
+  .comparison-label {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .comparison-column.bad .comparison-label {
+    color: rgba(255, 100, 100, 0.9);
+  }
+
+  .comparison-column.good .comparison-label {
+    color: #f7ced7;
+  }
+
+  .comparison-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .comparison-item-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .solution-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .solution-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 56px;
+    background: #f7ced7;
+    color: #024638;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #f7ced7;
+    box-shadow: 0 8px 24px rgba(247, 206, 215, 0.4);
+  }
+
+  .solution-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(247, 206, 215, 0.6);
+  }
+
+  .solution-cta-subtext {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .solution-section {
+      padding: 48px 16px;
+    }
+
+    .solution-headline {
+      font-size: 32px;
+    }
+
+    .solution-subheadline {
+      font-size: 18px;
+    }
+
+    .solution-difference-title {
+      font-size: 24px;
+    }
+
+    .solution-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+      padding: 20px 40px;
+    }
+  }
+</style>
+
+<section class="solution-section">
+  <div class="solution-container">
+    <div class="solution-header">
+      <div class="solution-eyebrow">The Natural Alternative</div>
+      <h2 class="solution-headline">
+        Good Good Balm Works Differently
+      </h2>
+      <p class="solution-subheadline">
+        Not another steroid cream. Not another empty promise. A scientifically-backed, 100% natural formula that actually heals your skin from the inside out.
+      </p>
+    </div>
+
+    <div class="solution-grid">
+      <div class="solution-content">
+        <div class="solution-features">
+          <div class="solution-feature">
+            <div class="solution-feature-icon">🌿</div>
+            <div class="solution-feature-content">
+              <div class="solution-feature-title">2400mg CBD + 600mg CBG</div>
+              <div class="solution-feature-description">
+                The highest concentration available in the UK. CBD reduces inflammation and calms irritation, while CBG promotes deep skin healing and repair.
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-feature">
+            <div class="solution-feature-icon">🔬</div>
+            <div class="solution-feature-content">
+              <div class="solution-feature-title">Science-Backed Formula</div>
+              <div class="solution-feature-description">
+                Each ingredient is chosen based on clinical research. Beeswax creates a protective barrier, MCT oil delivers cannabinoids deep into skin, Argan oil hydrates without clogging pores.
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-feature">
+            <div class="solution-feature-icon">🚫</div>
+            <div class="solution-feature-content">
+              <div class="solution-feature-title">Zero Steroids, Zero Nasties</div>
+              <div class="solution-feature-description">
+                No cortisone. No parabens. No synthetic fragrances. No palm oil. Just 6 natural ingredients your skin will thank you for. Safe for daily use, even on sensitive areas.
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-feature">
+            <div class="solution-feature-icon">⚡</div>
+            <div class="solution-feature-content">
+              <div class="solution-feature-title">Fast-Acting Relief</div>
+              <div class="solution-feature-description">
+                Most customers see visible improvement within 24 hours. Reduced redness, less itching, and noticeably softer skin. Long-term healing that actually lasts.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-visual">
+        <div class="solution-product-showcase">
+          <div class="solution-badge">Premium Natural Formula</div>
+          {% if featured_product.featured_image %}
+            <img
+              src="{{ featured_product.featured_image | img_url: '500x500' }}"
+              alt="Good Good Daily Super Balm - 2400mg CBD + 600mg CBG"
+              class="solution-product-image"
+            >
+          {% else %}
+            <div style="width: 100%; max-width: 350px; aspect-ratio: 1; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border-radius: 12px;">
+              <span style="font-size: 120px;">🫙</span>
+            </div>
+          {% endif %}
+          <div style="font-size: 18px; font-weight: 600; color: #f7ced7;">50ml Jar = 6+ Weeks Daily Use</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-difference">
+      <h3 class="solution-difference-title">Good Good Balm vs. Steroid Creams</h3>
+
+      <div class="solution-comparison">
+        <div class="comparison-column bad">
+          <div class="comparison-label">❌ Steroid Creams</div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">⚠️</span>
+            <span>Thins skin over time</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">⚠️</span>
+            <span>Creates dependency</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">⚠️</span>
+            <span>Only masks symptoms</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">⚠️</span>
+            <span>Synthetic chemicals</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">⚠️</span>
+            <span>Can't use long-term</span>
+          </div>
+        </div>
+
+        <div class="comparison-column good">
+          <div class="comparison-label">✅ Good Good Balm</div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">💚</span>
+            <span>Strengthens skin barrier</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">💚</span>
+            <span>Safe for daily use forever</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">💚</span>
+            <span>Heals root cause</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">💚</span>
+            <span>100% natural ingredients</span>
+          </div>
+          <div class="comparison-item">
+            <span class="comparison-item-icon">💚</span>
+            <span>Gets better with time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-cta">
+      <a href="/products/good-good-daily-super-balm" class="solution-cta-button">
+        <span>Try It Risk-Free</span>
+        <span>→</span>
+      </a>
+      <p class="solution-cta-subtext">
+        Free UK delivery • Ships within 24 hours • 100% satisfaction guaranteed
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const ctaButton = document.querySelector('.solution-cta-button');
+
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'solution_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_solution_try_risk_free'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Solution CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Try It Risk-Free'
+        });
+      }
+    });
+  }
+})();
+</script>

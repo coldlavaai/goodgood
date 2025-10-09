@@ -1,0 +1,477 @@
+{%- comment -%}
+  Customer Transformation Stories
+  Emotional storytelling that builds trust and relatability
+  Real people, real results, real emotions
+{%- endcomment -%}
+
+<style>
+  .transformation-stories-section {
+    background: linear-gradient(180deg, #fffbf5 0%, #ffffff 100%);
+    padding: 80px 20px;
+  }
+
+  .stories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stories-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .stories-eyebrow {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #024638;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .stories-headline {
+    font-size: 48px;
+    font-weight: 900;
+    color: #024638;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .stories-subheadline {
+    font-size: 20px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .stories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .stories-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .story-card {
+    background: #ffffff;
+    border: 2px solid #f7ced7;
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .story-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(2, 70, 56, 0.15);
+    border-color: #024638;
+  }
+
+  .story-badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: #024638;
+    color: #f7ced7;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .story-rating {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #ffda22;
+  }
+
+  .story-quote {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .story-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #f7ced7;
+  }
+
+  .story-author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #024638 0%, #f7ced7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .story-author-info {
+    flex: 1;
+  }
+
+  .story-author-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 4px;
+  }
+
+  .story-author-condition {
+    font-size: 13px;
+    color: #666;
+  }
+
+  .story-timeline {
+    display: inline-block;
+    background: rgba(247, 206, 215, 0.3);
+    border: 1px solid #f7ced7;
+    color: #024638;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .featured-story {
+    background: linear-gradient(135deg, #024638 0%, #036654 100%);
+    color: #ffffff;
+    padding: 48px;
+    border-radius: 16px;
+    margin-bottom: 48px;
+    border: 3px solid #f7ced7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-story::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 200px;
+    color: rgba(247, 206, 215, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .featured-story-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .featured-story-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #f7ced7;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .featured-story-quote {
+    font-size: 24px;
+    line-height: 1.6;
+    color: #ffffff;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .featured-story-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .featured-story-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #f7ced7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #024638;
+    flex-shrink: 0;
+  }
+
+  .featured-story-author-info {
+    flex: 1;
+  }
+
+  .featured-story-author-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f7ced7;
+    margin-bottom: 6px;
+  }
+
+  .featured-story-author-details {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .stories-cta {
+    text-align: center;
+    background: rgba(247, 206, 215, 0.2);
+    border-radius: 16px;
+    padding: 48px 32px;
+  }
+
+  .stories-cta-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #024638;
+    margin-bottom: 16px;
+  }
+
+  .stories-cta-text {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .stories-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 48px;
+    background: #024638;
+    color: #f7ced7;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid #024638;
+    box-shadow: 0 4px 12px rgba(2, 70, 56, 0.3);
+  }
+
+  .stories-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(2, 70, 56, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .transformation-stories-section {
+      padding: 48px 16px;
+    }
+
+    .stories-headline {
+      font-size: 32px;
+    }
+
+    .stories-subheadline {
+      font-size: 18px;
+    }
+
+    .featured-story {
+      padding: 32px 24px;
+    }
+
+    .featured-story-quote {
+      font-size: 20px;
+    }
+
+    .stories-cta-title {
+      font-size: 24px;
+    }
+
+    .stories-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+    }
+  }
+</style>
+
+<section class="transformation-stories-section">
+  <div class="stories-container">
+    <div class="stories-header">
+      <div class="stories-eyebrow">Real People. Real Results.</div>
+      <h2 class="stories-headline">
+        Lives Changed By Good Good Balm
+      </h2>
+      <p class="stories-subheadline">
+        These aren't paid actors or stock photos. These are real customers who found relief after years of suffering.
+      </p>
+    </div>
+
+    <div class="featured-story">
+      <div class="featured-story-content">
+        <div class="featured-story-label">⭐ Featured Story</div>
+        <div class="featured-story-quote">
+          "I had eczema for 15 years. I tried EVERYTHING. Steroid creams made my skin paper-thin. Expensive creams did nothing. I was so desperate I'd try anything. After 3 weeks with Good Good Balm, my eczema has completely cleared up. I can finally wear short sleeves without feeling embarrassed. This changed my life."
+        </div>
+        <div class="featured-story-author">
+          <div class="featured-story-avatar">T</div>
+          <div class="featured-story-author-info">
+            <div class="featured-story-author-name">Tara Stray</div>
+            <div class="featured-story-author-details">Chronic Eczema • 15 Years Suffering • Cleared in 3 Weeks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ Results in 2 weeks</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "Really great product! Helped with my psoriasis on my hands. Didn't leave my hands feeling oily and irritated like topical steroid creams do. Smells great, and leaves the skin feeling refreshed and revitalised."
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">A</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Andy Miller</div>
+            <div class="story-author-condition">Hand Psoriasis</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ Tried 100s of creams</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "An incredible product with real mind blowing healing powers. I've tried 100s of different creams over the years and nothing compares to Good Good Balm. The natural ingredients make all the difference."
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">J</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Josh Tatler</div>
+            <div class="story-author-condition">Chronic Dry Skin</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ Years of rosacea cleared</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "I had rosacea for years and tried countless treatments. Good Good Balm cleared it up completely. The healing properties of CBD and natural ingredients are incredible. Can't recommend this enough!"
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">D</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Darragh Lonye</div>
+            <div class="story-author-condition">Chronic Rosacea</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ Multi-use miracle</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "I was sceptical about trying yet another natural product but I'm so glad I did! I have used it to heal my cracked skin on my feet, chapped lips, cuticles and even to smooth flyaway hairs! Amazing product."
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">V</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Victoria</div>
+            <div class="story-author-condition">Multiple Skin Issues</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ Finally found relief</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "After spending hundreds on treatments that didn't work, Good Good Balm was different from day one. The itch stopped. The redness faded. My skin actually started healing instead of just covering up the problem."
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">S</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Sarah K.</div>
+            <div class="story-author-condition">Atopic Dermatitis</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-badge">Verified</div>
+        <div class="story-timeline">⏱️ No more steroid cream</div>
+        <div class="story-rating">★★★★★</div>
+        <div class="story-quote">
+          "I was trapped in the steroid cream cycle for 5 years. My GP kept prescribing stronger and stronger doses. Good Good Balm broke that cycle. I haven't used steroid cream in 4 months. My skin has never been better."
+        </div>
+        <div class="story-author">
+          <div class="story-author-avatar">M</div>
+          <div class="story-author-info">
+            <div class="story-author-name">Marcus R.</div>
+            <div class="story-author-condition">Steroid-Dependent Eczema</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stories-cta">
+      <h3 class="stories-cta-title">Your Story Could Be Next</h3>
+      <p class="stories-cta-text">
+        Join thousands of people who've found relief from eczema, psoriasis, and chronic dry skin.
+      </p>
+      <a href="/products/good-good-daily-super-balm" class="stories-cta-button">
+        <span>Start Your Transformation</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const ctaButton = document.querySelector('.stories-cta-button');
+
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'transformation_stories_cta_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_stories_start_transformation'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Transformation Stories CTA Clicked', {
+          location: 'homepage',
+          cta_text: 'Start Your Transformation'
+        });
+      }
+    });
+  }
+})();
+</script>
