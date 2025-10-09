@@ -23,6 +23,7 @@
   <section
     class="relative overflow-hidden bg-scheme-background text-scheme-text"
     data-color-scheme="{{ section.settings.color_scheme }}"
+    style="{% if template contains 'product' %}color: rgba(255, 255, 255, 0.9);{% endif %}"
   >
     <div class="section-content px-section py-4">
       <nav role="navigation" aria-label="breadcrumbs" class="breadcrumbs">
