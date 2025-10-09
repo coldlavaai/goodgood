@@ -456,22 +456,15 @@
     }
   },
   "order": [
-    "image_with_text_overlay_1",
-    "image_with_text",
     "scrolling_text_with_icons",
     "hero_killer",
     "problem_agitate",
     "solution",
     "transformation_stories",
-    "guarantee",
-    "final_urgency",
-    "image_with_text_XQN4db",
-    "featured_testimonials",
     "feature_text_thGCi6",
     "image_with_highlights",
-    "featured_collection_EtRicz",
-    "scrolling_logos_MTAFBn",
-    "text_columns_with_images",
+    "guarantee",
+    "final_urgency",
     "video_with_text_overlay"
   ]
 }

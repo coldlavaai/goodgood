@@ -277,26 +277,89 @@
 
   @media (max-width: 768px) {
     .solution-section {
-      padding: 48px 16px;
+      padding: 48px 20px;
+    }
+
+    .solution-eyebrow {
+      font-size: 12px;
+      margin-bottom: 12px;
     }
 
     .solution-headline {
-      font-size: 32px;
+      font-size: 34px;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
 
     .solution-subheadline {
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .solution-grid {
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .solution-feature {
+      gap: 14px;
+    }
+
+    .solution-feature-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+    }
+
+    .solution-feature-title {
       font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .solution-feature-description {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .solution-product-showcase {
+      padding: 24px;
+    }
+
+    .solution-badge {
+      font-size: 11px;
+      padding: 6px 16px;
+      margin-bottom: 12px;
+    }
+
+    .solution-difference {
+      padding: 40px 24px;
     }
 
     .solution-difference-title {
-      font-size: 24px;
+      font-size: 26px;
+      margin-bottom: 28px;
+    }
+
+    .comparison-label {
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .comparison-item {
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
     .solution-cta-button {
       width: 100%;
       justify-content: center;
       font-size: 18px;
-      padding: 20px 40px;
+      padding: 18px 40px;
+    }
+
+    .solution-cta-subtext {
+      font-size: 13px;
+      margin-top: 14px;
     }
   }
 </style>
@@ -361,17 +424,11 @@
       <div class="solution-visual">
         <div class="solution-product-showcase">
           <div class="solution-badge">Premium Natural Formula</div>
-          {% if featured_product.featured_image %}
-            <img
-              src="{{ featured_product.featured_image | img_url: '500x500' }}"
-              alt="Good Good Daily Super Balm - 2400mg CBD + 600mg CBG"
-              class="solution-product-image"
-            >
-          {% else %}
-            <div style="width: 100%; max-width: 350px; aspect-ratio: 1; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border-radius: 12px;">
-              <span style="font-size: 120px;">🫙</span>
-            </div>
-          {% endif %}
+          <img
+            src="{{ '45b21003-ab36-4f7f-8e4f-72141ef4d29d.jpg' | asset_img_url: '500x500' }}"
+            alt="Good Good Daily Super Balm - Natural CBD skincare"
+            class="solution-product-image"
+          >
           <div style="font-size: 18px; font-weight: 600; color: #f7ced7;">50ml Jar = 6+ Weeks Daily Use</div>
         </div>
       </div>
