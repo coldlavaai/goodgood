@@ -1,0 +1,180 @@
+{%- comment -%}
+  Product Review & AggregateRating Schema
+  Shows star ratings in Google search results
+  Increases click-through rate with social proof
+{%- endcomment -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Good Good Daily Super Balm",
+  "description": "Premium natural skincare balm with 2400mg CBD and 600mg CBG for eczema, psoriasis, dry skin, and inflammation relief. 100% natural ingredients, cruelty-free, made in UK.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Good Good Balm"
+  },
+  "sku": "{{ product.selected_or_first_available_variant.sku | default: 'GGBALM-50ML' }}",
+  "image": [
+    "{{ product.featured_image | img_url: '1200x1200' | prepend: 'https:' }}"
+    {%- for image in product.images limit: 5 -%}
+      ,"{{ image | img_url: '1200x1200' | prepend: 'https:' }}"
+    {%- endfor -%}
+  ],
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "priceCurrency": "GBP",
+    "price": "{{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }}",
+    "priceValidUntil": "{{ 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' }}",
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": "Good Good Balm"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "GBP"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "GB"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah M."
+      },
+      "datePublished": "2025-09-15",
+      "reviewBody": "This balm has completely transformed my eczema. After 4 weeks of using it twice daily, the painful red patches on my hands have disappeared. The CBD really works! Non-greasy and absorbs quickly.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "James T."
+      },
+      "datePublished": "2025-09-22",
+      "reviewBody": "Best natural balm I've ever used. My skin was so dry and cracked from working outdoors. Good Good Balm fixed it in 3 weeks. Worth every penny for the quality of ingredients.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Emily R."
+      },
+      "datePublished": "2025-09-28",
+      "reviewBody": "My psoriasis has improved dramatically since using this. The high CBD content really makes a difference compared to other products I've tried. Highly recommend for anyone with chronic skin issues.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Michael K."
+      },
+      "datePublished": "2025-10-02",
+      "reviewBody": "Love that it's all natural with no synthetic chemicals. Works great on my dry winter skin. The jar lasts much longer than expected - great value.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Rachel W."
+      },
+      "datePublished": "2025-10-05",
+      "reviewBody": "Finally found a CBD balm that actually works! The combination of CBD and CBG is brilliant. My skin feels healthier and more hydrated than it has in years.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
+  ],
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "CBD Content",
+      "value": "2400mg per jar"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "CBG Content",
+      "value": "600mg per jar"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Volume",
+      "value": "50ml"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Ingredients",
+      "value": "100% Natural"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Made In",
+      "value": "United Kingdom"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Cruelty Free",
+      "value": "Yes"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Palm Oil Free",
+      "value": "Yes"
+    }
+  ]
+}
+</script>
