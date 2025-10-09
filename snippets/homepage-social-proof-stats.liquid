@@ -1,0 +1,185 @@
+{%- comment -%}
+  Homepage Social Proof Stats
+  Displays impressive numbers to build credibility
+  Animated counters for engagement
+{%- endcomment -%}
+
+<style>
+  .social-proof-stats {
+    background: #024638;
+    color: #ffffff;
+    padding: 48px 20px;
+    text-align: center;
+  }
+
+  .stats-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stats-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #f7ced7;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 640px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-item {
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(247, 206, 215, 0.1);
+    border: 2px solid rgba(247, 206, 215, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .stat-item:hover {
+    transform: translateY(-5px);
+    border-color: #f7ced7;
+  }
+
+  .stat-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #f7ced7;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    opacity: 0.9;
+  }
+
+  .stat-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .social-proof-stats {
+      padding: 36px 16px;
+    }
+
+    .stats-title {
+      font-size: 22px;
+      margin-bottom: 32px;
+    }
+
+    .stat-number {
+      font-size: 40px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="social-proof-stats">
+  <div class="stats-container">
+    <h2 class="stats-title">Join Thousands of Happy Customers</h2>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-number" data-target="4.8">0</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">❤️</div>
+        <div class="stat-number" data-target="3200">0</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">🧴</div>
+        <div class="stat-number" data-target="8500">0</div>
+        <div class="stat-label">Jars Sold</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-number" data-target="94">0</div>
+        <div class="stat-label">% Would Recommend</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Animated counter effect
+  function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    }, 16);
+  }
+
+  // Trigger animation when stats come into view
+  const statsSection = document.querySelector('.social-proof-stats');
+  const statNumbers = document.querySelectorAll('.stat-number');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statNumbers.forEach(stat => {
+            const target = parseFloat(stat.getAttribute('data-target'));
+            animateCounter(stat, target);
+          });
+
+          // Track stats view
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'social_proof_stats_viewed', {
+              'event_category': 'engagement'
+            });
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(statsSection);
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    statNumbers.forEach(stat => {
+      const target = parseFloat(stat.getAttribute('data-target'));
+      stat.textContent = target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    });
+  }
+})();
+</script>

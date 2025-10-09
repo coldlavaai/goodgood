@@ -1,0 +1,130 @@
+{%- comment -%}
+  Homepage Urgency Banner
+  Creates FOMO and drives immediate action
+  Displays at top of homepage
+{%- endcomment -%}
+
+<style>
+  .homepage-urgency-banner {
+    background: linear-gradient(135deg, #024638 0%, #036b52 100%);
+    color: #ffffff;
+    padding: 12px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 50;
+  }
+
+  .urgency-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .urgency-icon {
+    font-size: 20px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .urgency-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .urgency-highlight {
+    background: #f7ced7;
+    color: #024638;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 0 4px;
+  }
+
+  .urgency-cta {
+    background: #f7ced7;
+    color: #024638;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .urgency-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .homepage-urgency-banner {
+      padding: 10px 16px;
+    }
+
+    .urgency-text {
+      font-size: 12px;
+    }
+
+    .urgency-highlight {
+      font-size: 13px;
+    }
+
+    .urgency-cta {
+      font-size: 11px;
+      padding: 5px 12px;
+    }
+  }
+</style>
+
+<div class="homepage-urgency-banner">
+  <div class="urgency-banner-content">
+    <span class="urgency-icon">🔥</span>
+    <span class="urgency-text">
+      LIMITED TIME: Get <span class="urgency-highlight">FREE UK DELIVERY</span> + Ships Within 24 Hours
+    </span>
+    <a href="/products/good-good-daily-super-balm" class="urgency-cta">
+      Shop Now →
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Track urgency banner clicks
+  const urgencyCTA = document.querySelector('.urgency-cta');
+
+  if (urgencyCTA) {
+    urgencyCTA.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'urgency_banner_click', {
+          'event_category': 'engagement',
+          'event_label': 'homepage_top_banner'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Urgency Banner Clicked', {
+          location: 'homepage'
+        });
+      }
+    });
+  }
+})();
+</script>

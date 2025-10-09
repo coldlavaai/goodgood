@@ -1,0 +1,270 @@
+{%- comment -%}
+  Homepage Quick Buy Section
+  Shows price, benefits, and instant "Add to Cart"
+  Removes friction for ready-to-buy visitors
+{%- endcomment -%}
+
+{%- assign featured_product = all_products['good-good-daily-super-balm'] -%}
+
+<style>
+  .homepage-quick-buy {
+    background: linear-gradient(135deg, #f7ced7 0%, #ffffff 100%);
+    border: 3px solid #024638;
+    border-radius: 16px;
+    padding: 40px 24px;
+    margin: 40px auto;
+    max-width: 900px;
+  }
+
+  .quick-buy-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .quick-buy-badge {
+    display: inline-block;
+    background: #024638;
+    color: #f7ced7;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .quick-buy-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #024638;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .quick-buy-subtitle {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .quick-buy-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .quick-buy-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .quick-buy-image {
+    text-align: center;
+  }
+
+  .quick-buy-image img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .quick-buy-details {
+    background: #ffffff;
+    border: 2px solid #024638;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .quick-buy-price-section {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px dashed #024638;
+  }
+
+  .quick-buy-price {
+    font-size: 48px;
+    font-weight: 900;
+    color: #024638;
+    margin-bottom: 4px;
+  }
+
+  .quick-buy-price-label {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .quick-buy-cost-per-day {
+    font-size: 16px;
+    color: #024638;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .quick-buy-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+  }
+
+  .quick-buy-benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .benefit-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: #dcfce7;
+    border: 2px solid #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #16a34a;
+  }
+
+  .quick-buy-cta {
+    width: 100%;
+    padding: 18px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #024638;
+    color: #f7ced7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+  }
+
+  .quick-buy-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(2, 70, 56, 0.3);
+  }
+
+  .quick-buy-guarantee {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .homepage-quick-buy {
+      padding: 32px 16px;
+    }
+
+    .quick-buy-title {
+      font-size: 26px;
+    }
+
+    .quick-buy-price {
+      font-size: 40px;
+    }
+  }
+</style>
+
+<div class="homepage-quick-buy">
+  <div class="quick-buy-header">
+    <div class="quick-buy-badge">⚡ Best Seller</div>
+    <h2 class="quick-buy-title">Ready to Transform Your Skin?</h2>
+    <p class="quick-buy-subtitle">Join thousands of happy customers who've found relief</p>
+  </div>
+
+  <div class="quick-buy-content">
+    <div class="quick-buy-image">
+      {% if featured_product.featured_image %}
+        <img src="{{ featured_product.featured_image | img_url: '600x600' }}" alt="{{ featured_product.title }}">
+      {% else %}
+        <div style="width: 300px; height: 300px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+          <span style="font-size: 64px;">🫙</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="quick-buy-details">
+      <div class="quick-buy-price-section">
+        <div class="quick-buy-price">£49</div>
+        <div class="quick-buy-price-label">50ml | 2400mg CBD + 600mg CBG</div>
+        <div class="quick-buy-cost-per-day">Only £1.17/day with regular use</div>
+      </div>
+
+      <ul class="quick-buy-benefits">
+        <li class="quick-buy-benefit">
+          <span class="benefit-icon">✓</span>
+          <span><strong>Fast Relief:</strong> Results in 3-6 weeks</span>
+        </li>
+        <li class="quick-buy-benefit">
+          <span class="benefit-icon">✓</span>
+          <span><strong>100% Natural:</strong> No synthetic chemicals</span>
+        </li>
+        <li class="quick-buy-benefit">
+          <span class="benefit-icon">✓</span>
+          <span><strong>High Strength:</strong> 2400mg CBD + 600mg CBG</span>
+        </li>
+        <li class="quick-buy-benefit">
+          <span class="benefit-icon">✓</span>
+          <span><strong>Made in UK:</strong> Premium quality guaranteed</span>
+        </li>
+        <li class="quick-buy-benefit">
+          <span class="benefit-icon">✓</span>
+          <span><strong>Long Lasting:</strong> 6+ weeks supply</span>
+        </li>
+      </ul>
+
+      <button
+        class="quick-buy-cta"
+        onclick="window.location.href='/cart/add?id={{ featured_product.selected_or_first_available_variant.id }}&quantity=1&return_to=/cart'"
+      >
+        Add to Cart - £49
+      </button>
+
+      <div class="quick-buy-guarantee">
+        <span>🚚</span>
+        <span>FREE UK Delivery | Ships Within 24 Hours</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const quickBuyCTA = document.querySelector('.quick-buy-cta');
+
+  if (quickBuyCTA) {
+    quickBuyCTA.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'add_to_cart', {
+          'event_category': 'ecommerce',
+          'event_label': 'homepage_quick_buy',
+          'value': 49
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Homepage Quick Buy', {
+          product_id: '{{ featured_product.id }}',
+          price: 49
+        });
+      }
+    });
+  }
+})();
+</script>

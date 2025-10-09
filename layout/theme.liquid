@@ -276,6 +276,12 @@
         <a class="skip-link" href="#MainContent">
           {{- 'general.accessibility.skip_to_content' | t -}}
         </a>
+
+        {%- comment -%} Homepage urgency banner {%- endcomment -%}
+        {%- if template.name == 'index' -%}
+          {% render 'homepage-urgency-banner' %}
+        {%- endif -%}
+
         {%- sections 'header-group' -%}
         {% render 'header-group-support' %}
         <main id="MainContent" class="overflow-hidden">
