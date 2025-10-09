@@ -123,6 +123,10 @@
       "type": "guarantee",
       "settings": {}
     },
+    "final_urgency": {
+      "type": "final-urgency",
+      "settings": {}
+    },
     "image_with_text_XQN4db": {
       "type": "image-with-text",
       "custom_css": [],
@@ -460,6 +464,7 @@
     "solution",
     "transformation_stories",
     "guarantee",
+    "final_urgency",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",
