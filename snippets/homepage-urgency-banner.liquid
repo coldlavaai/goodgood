@@ -5,10 +5,11 @@
 {%- endcomment -%}
 
 <style>
+  /* Mobile-first premium banner design */
   .homepage-urgency-banner {
     background: linear-gradient(135deg, #024638 0%, #036b52 100%);
     color: #ffffff;
-    padding: 16px 20px;
+    padding: 16px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -16,112 +17,105 @@
   }
 
   .urgency-banner-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
+  .urgency-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(247, 206, 215, 0.2);
+    border: 1px solid #f7ced7;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
   .urgency-icon {
-    font-size: 22px;
+    font-size: 14px;
     animation: pulse 2s infinite;
-    flex-shrink: 0;
   }
 
   @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.15);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
   }
 
-  .urgency-text {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+  .urgency-main-text {
+    font-size: 16px;
+    font-weight: 700;
     line-height: 1.4;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
   }
 
   .urgency-highlight {
-    background: #f7ced7;
-    color: #024638;
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-weight: 800;
-    margin: 0 4px;
-    white-space: nowrap;
+    color: #f7ced7;
+    font-weight: 900;
   }
 
   .urgency-cta {
+    display: inline-block;
     background: #f7ced7;
     color: #024638;
-    padding: 10px 24px;
+    padding: 12px 32px;
     border-radius: 8px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 14px;
     text-decoration: none;
     transition: all 0.2s ease;
-    display: inline-block;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    letter-spacing: 0.8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .urgency-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  /* Premium mobile design */
-  @media (max-width: 768px) {
+  /* Desktop refinements */
+  @media (min-width: 769px) {
     .homepage-urgency-banner {
-      padding: 20px 16px;
+      padding: 14px 20px;
     }
 
-    .urgency-banner-content {
-      flex-direction: column;
-      gap: 14px;
+    .urgency-badge {
+      font-size: 11px;
+      padding: 4px 14px;
+      margin-bottom: 6px;
     }
 
     .urgency-icon {
-      font-size: 28px;
+      font-size: 13px;
     }
 
-    .urgency-text {
+    .urgency-main-text {
       font-size: 15px;
-      line-height: 1.6;
-      font-weight: 600;
-      max-width: 320px;
-    }
-
-    .urgency-highlight {
-      display: inline-block;
-      padding: 4px 12px;
-      margin: 0;
-      font-size: 15px;
+      margin-bottom: 10px;
     }
 
     .urgency-cta {
-      font-size: 15px;
-      padding: 14px 40px;
-      font-weight: 800;
-      border-radius: 10px;
-      letter-spacing: 0.8px;
+      padding: 10px 28px;
+      font-size: 13px;
     }
   }
 </style>
 
 <div class="homepage-urgency-banner">
   <div class="urgency-banner-content">
-    <span class="urgency-icon">🔥</span>
-    <span class="urgency-text">
-      LIMITED TIME: Get <span class="urgency-highlight">FREE UK DELIVERY</span> + Ships Within 24 Hours
-    </span>
+    <div class="urgency-badge">
+      <span class="urgency-icon">🔥</span>
+      <span>Limited Time Offer</span>
+    </div>
+    <div class="urgency-main-text">
+      <span class="urgency-highlight">Free UK Delivery</span> + Ships Within 24hrs
+    </div>
     <a href="/products/good-good-daily-super-balm" class="urgency-cta">
       Shop Now →
     </a>
