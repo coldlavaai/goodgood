@@ -8,7 +8,7 @@
   .homepage-urgency-banner {
     background: linear-gradient(135deg, #024638 0%, #036b52 100%);
     color: #ffffff;
-    padding: 12px 20px;
+    padding: 16px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -19,15 +19,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   .urgency-icon {
-    font-size: 20px;
+    font-size: 22px;
     animation: pulse 2s infinite;
+    flex-shrink: 0;
   }
 
   @keyframes pulse {
@@ -35,82 +35,83 @@
       transform: scale(1);
     }
     50% {
-      transform: scale(1.1);
+      transform: scale(1.15);
     }
   }
 
   .urgency-text {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
   }
 
   .urgency-highlight {
     background: #f7ced7;
     color: #024638;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: 4px;
-    font-weight: 700;
+    font-weight: 800;
     margin: 0 4px;
+    white-space: nowrap;
   }
 
   .urgency-cta {
     background: #f7ced7;
     color: #024638;
-    padding: 6px 16px;
-    border-radius: 6px;
+    padding: 10px 24px;
+    border-radius: 8px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .urgency-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 
+  /* Premium mobile design */
   @media (max-width: 768px) {
     .homepage-urgency-banner {
-      padding: 14px 16px;
+      padding: 20px 16px;
     }
 
     .urgency-banner-content {
       flex-direction: column;
-      gap: 10px;
-      align-items: center;
+      gap: 14px;
     }
 
     .urgency-icon {
-      font-size: 24px;
-      margin-bottom: 0;
+      font-size: 28px;
     }
 
     .urgency-text {
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
-      max-width: 280px;
-      display: block;
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 600;
+      max-width: 320px;
     }
 
     .urgency-highlight {
-      font-size: 13px;
-      display: inline;
-      padding: 3px 6px;
-      margin: 0 3px;
-      white-space: nowrap;
+      display: inline-block;
+      padding: 4px 12px;
+      margin: 0;
+      font-size: 15px;
     }
 
     .urgency-cta {
-      font-size: 14px;
-      padding: 12px 32px;
-      margin-top: 2px;
-      width: auto;
+      font-size: 15px;
+      padding: 14px 40px;
       font-weight: 800;
+      border-radius: 10px;
+      letter-spacing: 0.8px;
     }
   }
 </style>
