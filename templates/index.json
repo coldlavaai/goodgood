@@ -115,6 +115,10 @@
       "type": "solution",
       "settings": {}
     },
+    "transformation_stories": {
+      "type": "transformation-stories",
+      "settings": {}
+    },
     "image_with_text_XQN4db": {
       "type": "image-with-text",
       "custom_css": [],
@@ -450,6 +454,7 @@
     "hero_killer",
     "problem_agitate",
     "solution",
+    "transformation_stories",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",
