@@ -38,13 +38,40 @@
     overflow-x: auto;
     border-radius: 12px;
     border: 2px solid #024638;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scroll-hint {
+    display: none;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 12px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-hint {
+      display: block;
+    }
   }
 
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
     background: #ffffff;
-    min-width: 600px;
+    min-width: 650px;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-table {
+      font-size: 12px;
+    }
   }
 
   .comparison-table thead {
@@ -408,6 +435,8 @@
       </tbody>
     </table>
   </div>
+
+  <p class="scroll-hint">👈 Swipe left to see full comparison 👉</p>
 
   <div class="summary-box">
     <div class="summary-text">
