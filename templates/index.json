@@ -103,8 +103,8 @@
         "use_gradient_background": false
       }
     },
-    "homepage_hero_killer": {
-      "type": "homepage-hero-killer",
+    "hero_killer": {
+      "type": "hero-killer",
       "settings": {}
     },
     "image_with_text_XQN4db": {
@@ -439,7 +439,7 @@
     "image_with_text_overlay_1",
     "image_with_text",
     "scrolling_text_with_icons",
-    "homepage_hero_killer",
+    "hero_killer",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",

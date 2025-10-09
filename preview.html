@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Good Balm - Phase 2 Preview</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #024638;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 36px;
+    }
+
+    .section {
+      background: white;
+      border: 3px solid #024638;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 6px 6px 0 #024638;
+    }
+
+    .section-title {
+      color: #024638;
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f7ced7;
+      padding-bottom: 10px;
+    }
+
+    .description {
+      background: #fffbf5;
+      border-left: 4px solid #f7ced7;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Trust Badges */
+    .trust-badges {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 20px 0;
+      border-top: 2px solid #024638;
+      border-bottom: 2px solid #024638;
+    }
+
+    @media (min-width: 640px) {
+      .trust-badges {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 12px 8px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 2px solid #024638;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .trust-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 #024638;
+    }
+
+    .trust-badge-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .trust-badge-text {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #024638;
+    }
+
+    /* Urgency Messages */
+    .urgency-messages {
+      margin: 16px 0;
+    }
+
+    .urgency-message {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 2px solid;
+    }
+
+    .urgency-message-low-stock {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .urgency-message-high-demand {
+      background: #fce7f3;
+      border-color: #ec4899;
+      color: #831843;
+    }
+
+    .urgency-message-limited-time {
+      background: #dbeafe;
+      border-color: #3b82f6;
+      color: #1e40af;
+    }
+
+    .urgency-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Sticky Add to Cart */
+    #sticky-atc {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #ffffff;
+      border-top: 2px solid #024638;
+      padding: 12px 16px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+      display: flex;
+    }
+
+    #sticky-atc-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    #sticky-atc-image {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #024638;
+      flex-shrink: 0;
+      background: #f7ced7;
+    }
+
+    #sticky-atc-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #sticky-atc-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #024638;
+    }
+
+    #sticky-atc-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #024638;
+    }
+
+    #sticky-atc-button {
+      flex-shrink: 0;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 8px;
+      border: 2px solid #024638;
+      background: #f7ced7;
+      color: #024638;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #sticky-atc-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 #024638;
+    }
+
+    /* Exit Popup */
+    .exit-popup-demo {
+      background: rgba(2, 70, 56, 0.85);
+      padding: 40px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #exit-popup {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 4px solid #024638;
+      max-width: 500px;
+      width: 100%;
+      padding: 32px 24px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    #exit-popup-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #f7ced7;
+      border: 2px solid #024638;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      color: #024638;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    #exit-popup-close:hover {
+      transform: rotate(90deg) scale(1.1);
+      background: #024638;
+      color: #f7ced7;
+    }
+
+    #exit-popup-emoji {
+      font-size: 64px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    #exit-popup-title {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      color: #024638;
+      margin-bottom: 12px;
+    }
+
+    #exit-popup-subtitle {
+      font-size: 16px;
+      text-align: center;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    #exit-popup-email {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #024638;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    #exit-popup-submit {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: #f7ced7;
+      border: 2px solid #024638;
+      border-radius: 8px;
+      color: #024638;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #exit-popup-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 #024638;
+    }
+
+    #exit-popup-disclaimer {
+      font-size: 12px;
+      text-align: center;
+      color: #999;
+      margin-top: 12px;
+    }
+
+    .note {
+      background: #e0f2fe;
+      border: 2px solid #0284c7;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .note strong {
+      color: #024638;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .section-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Good Good Balm - Phase 2 Preview</h1>
+
+    <!-- Feature 1: Trust Badges -->
+    <div class="section">
+      <h2 class="section-title">1. Trust Badges ✅</h2>
+      <div class="description">
+        <strong>Location:</strong> Appears below "Add to Cart" button on product pages<br>
+        <strong>Purpose:</strong> Build credibility and trust with certifications<br>
+        <strong>Behavior:</strong> Hover to see lift effect
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge" title="Made with 100% natural, plant-based ingredients">
+          <div class="trust-badge-icon">🌿</div>
+          <div class="trust-badge-text">100% Natural</div>
+        </div>
+
+        <div class="trust-badge" title="Cruelty-free and never tested on animals">
+          <div class="trust-badge-icon">🐰</div>
+          <div class="trust-badge-text">Cruelty Free</div>
+        </div>
+
+        <div class="trust-badge" title="Formulated and manufactured in the United Kingdom">
+          <div class="trust-badge-icon">🇬🇧</div>
+          <div class="trust-badge-text">Made in UK</div>
+        </div>
+
+        <div class="trust-badge" title="Completely palm oil free formula">
+          <div class="trust-badge-icon">🌴</div>
+          <div class="trust-badge-text">Palm Oil Free</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Urgency Messages -->
+    <div class="section">
+      <h2 class="section-title">2. Urgency Messages ⚠️</h2>
+      <div class="description">
+        <strong>Location:</strong> Appears below price on product pages<br>
+        <strong>Purpose:</strong> Create FOMO and drive immediate action<br>
+        <strong>Behavior:</strong> Shows 1-3 messages dynamically based on conditions
+      </div>
+
+      <div class="urgency-messages">
+        <div class="urgency-message urgency-message-low-stock">
+          <span class="urgency-icon">⚠️</span>
+          <div class="urgency-text">
+            <strong>Low Stock Alert:</strong> Only 7 left in stock!
+          </div>
+        </div>
+
+        <div class="urgency-message urgency-message-high-demand">
+          <span class="urgency-icon">🔥</span>
+          <div class="urgency-text">
+            <strong>High Demand:</strong> 12 people are viewing this right now
+          </div>
+        </div>
+
+        <div class="urgency-message urgency-message-limited-time">
+          <span class="urgency-icon">📦</span>
+          <div class="urgency-text">
+            <strong>Order Today:</strong> Ships within 24 hours when ordered before 3pm
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Dynamic Logic:</strong>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+          <li>Low stock: Only shows when inventory < 10 units</li>
+          <li>High demand: Shows 50% of the time, updates every 30 seconds</li>
+          <li>Fast shipping: Only shows before 3pm</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3: Sticky Add to Cart -->
+    <div class="section">
+      <h2 class="section-title">3. Sticky Add to Cart (Mobile) 📱</h2>
+      <div class="description">
+        <strong>Location:</strong> Bottom of screen (mobile only)<br>
+        <strong>Purpose:</strong> Keep CTA accessible while scrolling<br>
+        <strong>Behavior:</strong> Slides up when main button is off-screen, hides on desktop
+      </div>
+
+      <div id="sticky-atc">
+        <div id="sticky-atc-inner">
+          <div id="sticky-atc-image"></div>
+
+          <div id="sticky-atc-info">
+            <div id="sticky-atc-title">Good Good Daily Super Balm</div>
+            <div id="sticky-atc-price">£59.00</div>
+          </div>
+
+          <button id="sticky-atc-button">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top: 80px;">
+        <strong>⬆️ See the sticky bar above?</strong> That's what mobile users will see at the bottom of their screen when scrolling through the product page. On desktop, it's hidden.
+      </div>
+    </div>
+
+    <!-- Feature 4: Exit Intent Popup -->
+    <div class="section">
+      <h2 class="section-title">4. Exit-Intent Popup 💰</h2>
+      <div class="description">
+        <strong>Location:</strong> Full-screen overlay<br>
+        <strong>Purpose:</strong> Capture abandoning visitors with 10% discount<br>
+        <strong>Triggers:</strong> Desktop = cursor exit | Mobile = 30 seconds<br>
+        <strong>Frequency:</strong> Once per session
+      </div>
+
+      <div class="exit-popup-demo">
+        <div id="exit-popup">
+          <button id="exit-popup-close">×</button>
+
+          <div id="exit-popup-content">
+            <div id="exit-popup-emoji">👋</div>
+            <h2 id="exit-popup-title">Wait! Don't Miss Out</h2>
+            <p id="exit-popup-subtitle">
+              Get <strong>10% OFF</strong> your first order + exclusive skin care tips!
+            </p>
+
+            <form id="exit-popup-form" onsubmit="event.preventDefault(); alert('Form submission prevented for preview');">
+              <input
+                type="email"
+                id="exit-popup-email"
+                placeholder="Enter your email address"
+                required
+              >
+              <button type="submit" id="exit-popup-submit">
+                Get My 10% OFF
+              </button>
+              <p id="exit-popup-disclaimer">
+                We respect your privacy. Unsubscribe anytime.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Integration:</strong> Submits to Shopify's <code>/contact</code> form with tags "newsletter,exit-intent". After submission, shows success message and closes automatically after 3 seconds.
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section" style="background: linear-gradient(135deg, #f7ced7 0%, #ffffff 100%);">
+      <h2 class="section-title">📊 Expected Impact</h2>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <tr style="border-bottom: 2px solid #024638; font-weight: bold;">
+          <td style="padding: 12px; color: #024638;">Metric</td>
+          <td style="padding: 12px; color: #024638; text-align: right;">Expected Improvement</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f7ced7;">
+          <td style="padding: 12px;">Mobile Conversion Rate</td>
+          <td style="padding: 12px; text-align: right; font-weight: bold; color: #059669;">+20-30%</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f7ced7;">
+          <td style="padding: 12px;">Average Order Value</td>
+          <td style="padding: 12px; text-align: right; font-weight: bold; color: #059669;">+10-15%</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f7ced7;">
+          <td style="padding: 12px;">Email List Growth</td>
+          <td style="padding: 12px; text-align: right; font-weight: bold; color: #059669;">+200-300%</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px;">Cart Abandonment Recovery</td>
+          <td style="padding: 12px; text-align: right; font-weight: bold; color: #059669;">+5-15%</td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="text-align: center; padding: 40px 0; color: #666;">
+      <p style="font-size: 18px; margin-bottom: 10px;">Ready to deploy? 🚀</p>
+      <p>Pull the latest changes from GitHub's <strong>main</strong> branch in your Shopify admin.</p>
+    </div>
+  </div>
+</body>
+</html>
