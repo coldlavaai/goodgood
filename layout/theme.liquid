@@ -32,9 +32,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta name="theme-color" content="">
+        <meta name="theme-color" content="#024638">
         <link rel="canonical" href="{{ canonical_url }}">
+
+        {%- comment -%} Performance: Critical resource hints {%- endcomment -%}
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+        <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
+        <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com">
+        <link rel="preconnect" href="https://www.instagram.com" crossorigin>
+        <link rel="preconnect" href="https://www.facebook.com" crossorigin>
 
         {%- liquid
           assign main_font = settings.type_main_font
@@ -746,9 +752,26 @@
           </div>
         </div>
 
-        <!-- VAPI Widget JavaScript -->
-        <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"></script>
+        <!-- VAPI Widget JavaScript - Performance: Load async after page ready -->
         <script>
+          // Load VAPI SDK only when needed
+          function loadVapiSDK() {
+            if (!window.vapiSDKLoaded) {
+              const script = document.createElement('script');
+              script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+              script.async = true;
+              document.body.appendChild(script);
+              window.vapiSDKLoaded = true;
+            }
+          }
+
+          // Defer VAPI initialization until user interaction or page idle
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => loadVapiSDK(), { timeout: 3000 });
+          } else {
+            setTimeout(loadVapiSDK, 3000);
+          }
+
           document.addEventListener('DOMContentLoaded', function() {
             // Widget state
             let previousChatId = null;
