@@ -350,19 +350,29 @@
     submitBtn.textContent = 'Subscribing...';
 
     try {
-      // Subscribe to Shopify email list
+      // Subscribe to Shopify customer list - same format as newsletter form
+      const formData = new FormData();
+      formData.append('form_type', 'customer');
+      formData.append('utf8', '✓');
+      formData.append('contact[email]', email);
+      formData.append('contact[tags]', 'newsletter,exit-intent,popup-subscriber');
+
       const response = await fetch('/contact', {
         method: 'POST',
+        body: formData,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          'form_type': 'customer',
-          'utf8': '✓',
-          'contact[email]': email,
-          'contact[tags]': 'newsletter,exit-intent'
-        })
+          'Accept': 'application/json, text/javascript, */*; q=0.01',
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       });
+
+      // Log for debugging
+      console.log('Subscription response:', response.status, response.statusText);
+
+      if (!response.ok) {
+        const text = await response.text();
+        console.log('Response body:', text);
+      }
 
       hasSubscribed = true;
 
