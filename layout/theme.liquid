@@ -285,6 +285,9 @@
         {%- sections 'footer-group' -%}
         {%- sections 'overlay-group' -%}
 
+        {%- comment -%} Exit-intent popup for conversion {%- endcomment -%}
+        {% render 'exit-intent-popup' %}
+
         <div
           id="screenreader-announce"
           class="sr-only"

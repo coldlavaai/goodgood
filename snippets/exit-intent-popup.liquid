@@ -1,0 +1,390 @@
+{%- comment -%}
+  Exit-Intent Popup
+  Captures abandoning visitors with a special offer
+  Shows when user moves cursor towards browser top (desktop) or after time delay (mobile)
+{%- endcomment -%}
+
+<style>
+  #exit-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(2, 70, 56, 0.85);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #exit-popup-overlay.show {
+    display: flex;
+  }
+
+  #exit-popup-overlay.visible {
+    opacity: 1;
+  }
+
+  #exit-popup {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 4px solid #024638;
+    max-width: 500px;
+    width: 100%;
+    padding: 32px 24px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  #exit-popup-overlay.visible #exit-popup {
+    transform: scale(1);
+  }
+
+  #exit-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f7ced7;
+    border: 2px solid #024638;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    color: #024638;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+
+  #exit-popup-close:hover {
+    transform: rotate(90deg) scale(1.1);
+    background: #024638;
+    color: #f7ced7;
+  }
+
+  #exit-popup-emoji {
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  #exit-popup-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #024638;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  #exit-popup-subtitle {
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  #exit-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #exit-popup-email {
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 2px solid #024638;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  #exit-popup-email:focus {
+    border-color: #f7ced7;
+    box-shadow: 0 0 0 3px rgba(247, 206, 215, 0.3);
+  }
+
+  #exit-popup-submit {
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #f7ced7;
+    border: 2px solid #024638;
+    border-radius: 8px;
+    color: #024638;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  #exit-popup-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 #024638;
+  }
+
+  #exit-popup-submit:active {
+    transform: translateY(0);
+    box-shadow: 2px 2px 0 #024638;
+  }
+
+  #exit-popup-disclaimer {
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  #exit-popup-success {
+    display: none;
+    text-align: center;
+  }
+
+  #exit-popup-success.show {
+    display: block;
+  }
+
+  #exit-popup-success-emoji {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  #exit-popup-success-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #024638;
+    margin-bottom: 8px;
+  }
+
+  #exit-popup-success-text {
+    font-size: 16px;
+    color: #666;
+  }
+
+  @media (max-width: 640px) {
+    #exit-popup {
+      padding: 24px 20px;
+    }
+
+    #exit-popup-title {
+      font-size: 24px;
+    }
+
+    #exit-popup-subtitle {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div id="exit-popup-overlay" role="dialog" aria-labelledby="exit-popup-title" aria-modal="true">
+  <div id="exit-popup">
+    <button id="exit-popup-close" aria-label="Close popup">×</button>
+
+    <div id="exit-popup-content">
+      <div id="exit-popup-emoji" aria-hidden="true">👋</div>
+      <h2 id="exit-popup-title">Wait! Don't Miss Out</h2>
+      <p id="exit-popup-subtitle">
+        Get <strong>10% OFF</strong> your first order + exclusive skin care tips!
+      </p>
+
+      <form id="exit-popup-form">
+        <input
+          type="email"
+          id="exit-popup-email"
+          name="email"
+          placeholder="Enter your email address"
+          required
+          aria-label="Email address"
+        >
+        <button type="submit" id="exit-popup-submit">
+          Get My 10% OFF
+        </button>
+        <p id="exit-popup-disclaimer">
+          We respect your privacy. Unsubscribe anytime.
+        </p>
+      </form>
+    </div>
+
+    <div id="exit-popup-success">
+      <div id="exit-popup-success-emoji" aria-hidden="true">🎉</div>
+      <h3 id="exit-popup-success-title">You're In!</h3>
+      <p id="exit-popup-success-text">
+        Check your email for your exclusive 10% discount code.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('exit-popup-overlay');
+  const popup = document.getElementById('exit-popup');
+  const closeBtn = document.getElementById('exit-popup-close');
+  const form = document.getElementById('exit-popup-form');
+  const content = document.getElementById('exit-popup-content');
+  const success = document.getElementById('exit-popup-success');
+
+  let hasShown = false;
+  let hasSubscribed = false;
+
+  // Check if already shown in this session
+  if (sessionStorage.getItem('exit-popup-shown')) {
+    return;
+  }
+
+  // Desktop: Exit intent detection
+  let exitIntentTriggered = false;
+
+  function handleMouseLeave(e) {
+    if (e.clientY <= 50 && !exitIntentTriggered && !hasShown) {
+      exitIntentTriggered = true;
+      showPopup();
+    }
+  }
+
+  // Mobile: Show after time delay
+  let mobileTimeout;
+  if (window.innerWidth < 1024) {
+    mobileTimeout = setTimeout(() => {
+      if (!hasShown) {
+        showPopup();
+      }
+    }, 30000); // Show after 30 seconds on mobile
+  }
+
+  // Desktop exit intent
+  if (window.innerWidth >= 1024) {
+    document.addEventListener('mouseleave', handleMouseLeave);
+  }
+
+  function showPopup() {
+    if (hasShown) return;
+
+    hasShown = true;
+    sessionStorage.setItem('exit-popup-shown', 'true');
+
+    overlay.classList.add('show');
+    requestAnimationFrame(() => {
+      overlay.classList.add('visible');
+    });
+
+    // Track popup view
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exit_popup_shown', {
+        'event_category': 'engagement'
+      });
+    }
+
+    if (typeof window.ShopifyAnalytics !== 'undefined') {
+      window.ShopifyAnalytics.lib.track('Exit Popup Shown', {});
+    }
+  }
+
+  function closePopup() {
+    overlay.classList.remove('visible');
+    setTimeout(() => {
+      overlay.classList.remove('show');
+    }, 300);
+
+    // Track popup close
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exit_popup_closed', {
+        'event_category': 'engagement',
+        'subscribed': hasSubscribed
+      });
+    }
+  }
+
+  // Close button
+  closeBtn.addEventListener('click', closePopup);
+
+  // Close on overlay click
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('visible')) {
+      closePopup();
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('exit-popup-email').value;
+    const submitBtn = document.getElementById('exit-popup-submit');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Subscribing...';
+
+    try {
+      // Subscribe to Shopify email list
+      const response = await fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'form_type': 'customer',
+          'utf8': '✓',
+          'contact[email]': email,
+          'contact[tags]': 'newsletter,exit-intent'
+        })
+      });
+
+      hasSubscribed = true;
+
+      // Show success message
+      content.style.display = 'none';
+      success.classList.add('show');
+
+      // Track conversion
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'newsletter_signup', {
+          'event_category': 'engagement',
+          'event_label': 'exit_popup'
+        });
+      }
+
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Newsletter Signup', {
+          source: 'exit_popup'
+        });
+      }
+
+      // Close after 3 seconds
+      setTimeout(closePopup, 3000);
+
+    } catch (error) {
+      console.error('Subscription error:', error);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Try Again';
+      alert('Something went wrong. Please try again.');
+    }
+  });
+
+  // Cleanup
+  window.addEventListener('beforeunload', () => {
+    if (mobileTimeout) clearTimeout(mobileTimeout);
+    document.removeEventListener('mouseleave', handleMouseLeave);
+  });
+})();
+</script>

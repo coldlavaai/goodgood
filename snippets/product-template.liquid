@@ -482,6 +482,8 @@
                       block: block,
                       block_base_classes: block_base_classes
                     %}
+                    {%- comment -%} Urgency messaging for conversion {%- endcomment -%}
+                    {% render 'urgency-message', product: product %}
                   {% when 'variant_picker' %}
                     {%- liquid
                       if block.settings.hide_option_labels
@@ -507,6 +509,8 @@
                       block: block,
                       block_base_classes: block_base_classes
                     %}
+                    {%- comment -%} Trust badges for conversion {%- endcomment -%}
+                    {% render 'trust-badges' %}
                   {%- when 'vendor' -%}
                     {% render 'product-block-vendor',
                       product: product,
@@ -830,3 +834,6 @@
     });
   </script>
 {% endif %}
+
+{%- comment -%} Sticky Add to Cart for mobile conversions {%- endcomment -%}
+{% render 'sticky-add-to-cart', product: product %}

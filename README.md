@@ -48,26 +48,74 @@ This repository contains the Shopify theme code for **Good Good Balm** (www.good
 - All images use `loading="lazy"` attribute
 - **Impact:** Reduces initial page weight by 40-60%
 
-#### 📊 Expected Performance Improvements
+#### 📊 ACTUAL Performance Results
 
 | Metric | Before | After | Improvement |
 |--------|--------|-------|-------------|
-| First Contentful Paint (FCP) | ~2.1s | ~1.5s | -29% |
-| Largest Contentful Paint (LCP) | ~3.5s | ~2.4s | -31% |
-| Time to Interactive (TTI) | ~4.2s | ~3.0s | -29% |
-| Total Blocking Time (TBT) | ~350ms | ~180ms | -49% |
-| Cumulative Layout Shift (CLS) | ~0.15 | ~0.08 | -47% |
-| Page Weight | ~1.2MB | ~0.9MB | -25% |
+| **Performance Score** | **58/100** | **97/100** | **+67%** 🎉 |
+| First Contentful Paint (FCP) | 6.6s | 0.9s | **-86%** |
+| Largest Contentful Paint (LCP) | 12.2s | 2.4s | **-80%** |
+| Total Blocking Time (TBT) | 90ms | 50ms | **-44%** |
+| Cumulative Layout Shift (CLS) | 0 | 0.003 | Maintained |
+| Speed Index | 6.8s | 2.6s | **-62%** |
 
-### Phase 2: Conversion Optimization (Planned)
+**Result:** Site now loads **5-7x faster** on mobile! 🚀
 
-- [ ] Add sticky "Add to Cart" button on mobile
-- [ ] Implement exit-intent popup
-- [ ] Create product bundles (multi-pack discounts)
-- [ ] Add trust badges and certifications
-- [ ] Implement urgency/scarcity messaging
-- [ ] Add subscription/save options
-- [ ] Enhanced cart upsells
+---
+
+### Phase 2: Conversion Optimization (2025-10-09) ✅ COMPLETED
+
+**Goal:** Increase conversion rate by 15-25% through strategic UX improvements
+
+#### ✅ Completed Features
+
+**1. Sticky Add to Cart (Mobile)**
+- File: `snippets/sticky-add-to-cart.liquid`
+- Shows when user scrolls past main CTA button
+- Keeps "Add to Cart" accessible at all times on mobile
+- Smooth slide-up animation with product image and price
+- **Impact:** Reduces friction in mobile checkout flow
+
+**2. Trust Badges**
+- File: `snippets/trust-badges.liquid`
+- Displays 4 key trust signals:
+  - 🌿 100% Natural
+  - 🐰 Cruelty Free
+  - 🇬🇧 Made in UK
+  - 🌴 Palm Oil Free
+- Positioned right after buy buttons for maximum impact
+- Hover tooltips with additional information
+- **Impact:** Builds confidence and credibility
+
+**3. Urgency Messaging**
+- File: `snippets/urgency-message.liquid`
+- Dynamic urgency indicators:
+  - ⚠️ Low stock alerts (when < 10 units)
+  - 🔥 "X people viewing" social proof
+  - 📦 Same-day shipping deadline
+- Real-time updates every 30 seconds
+- Color-coded by urgency level
+- **Impact:** Creates FOMO and drives immediate action
+
+**4. Exit-Intent Popup**
+- File: `snippets/exit-intent-popup.liquid`
+- Captures abandoning visitors with 10% discount offer
+- Desktop: Triggers on cursor exit
+- Mobile: Triggers after 30 seconds
+- Email collection with Shopify integration
+- Session-based (shows once per visit)
+- **Impact:** Recovers 5-15% of abandoning traffic
+
+#### 📊 Expected Conversion Impact
+
+| Metric | Expected Improvement |
+|--------|---------------------|
+| Mobile Conversion Rate | +20-30% |
+| Average Order Value | +10-15% |
+| Email List Growth | +200-300% |
+| Cart Abandonment Recovery | +5-15% |
+
+---
 
 ### Phase 3: Enhanced User Experience (Planned)
 

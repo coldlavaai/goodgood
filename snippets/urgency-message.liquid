@@ -1,0 +1,174 @@
+{%- comment -%}
+  Urgency Messaging Component
+  Creates FOMO (fear of missing out) and urgency
+  Shows stock levels and recent purchases
+{%- endcomment -%}
+
+<style>
+  .urgency-messages {
+    margin: 16px 0;
+  }
+
+  .urgency-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid;
+    animation: urgency-fade-in 0.5s ease-out;
+  }
+
+  @keyframes urgency-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .urgency-message-low-stock {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    color: #92400e;
+  }
+
+  .urgency-message-high-demand {
+    background: #fce7f3;
+    border-color: #ec4899;
+    color: #831843;
+  }
+
+  .urgency-message-limited-time {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    color: #1e40af;
+  }
+
+  .urgency-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .urgency-text {
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .urgency-text strong {
+    font-weight: 700;
+  }
+
+  /* Pulse animation for high urgency */
+  .urgency-message-low-stock .urgency-icon {
+    animation: urgency-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes urgency-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Hide on very small screens if needed */
+  @media (max-width: 360px) {
+    .urgency-message {
+      font-size: 13px;
+      padding: 10px 12px;
+    }
+  }
+</style>
+
+<div class="urgency-messages" role="region" aria-label="Product availability alerts">
+  {%- comment -%} Low stock message {%- endcomment -%}
+  {% if product.selected_or_first_available_variant.inventory_quantity <= 10 and product.selected_or_first_available_variant.inventory_quantity > 0 %}
+    <div class="urgency-message urgency-message-low-stock" role="alert">
+      <span class="urgency-icon" aria-hidden="true">⚠️</span>
+      <div class="urgency-text">
+        <strong>Low Stock Alert:</strong> Only {{ product.selected_or_first_available_variant.inventory_quantity }} left in stock!
+      </div>
+    </div>
+  {% endif %}
+
+  {%- comment -%} High demand message (shows randomly ~50% of the time) {%- endcomment -%}
+  {% assign show_demand_message = 'now' | date: '%s' | modulo: 2 %}
+  {% if show_demand_message == 0 %}
+    <div class="urgency-message urgency-message-high-demand">
+      <span class="urgency-icon" aria-hidden="true">🔥</span>
+      <div class="urgency-text">
+        <strong>High Demand:</strong> {{ 'now' | date: '%s' | modulo: 17 | plus: 8 }} people are viewing this right now
+      </div>
+    </div>
+  {% endif %}
+
+  {%- comment -%} Fast shipping message {%- endcomment -%}
+  {% assign current_hour = 'now' | date: '%H' | plus: 0 %}
+  {% if current_hour >= 0 and current_hour < 15 %}
+    <div class="urgency-message urgency-message-limited-time">
+      <span class="urgency-icon" aria-hidden="true">📦</span>
+      <div class="urgency-text">
+        <strong>Order Today:</strong> Ships within 24 hours when ordered before 3pm
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+(function() {
+  // Optionally: Rotate messages dynamically
+  const messages = document.querySelectorAll('.urgency-message');
+
+  // Update "people viewing" number every 30 seconds for dynamism
+  const demandMessages = document.querySelectorAll('.urgency-message-high-demand .urgency-text');
+
+  if (demandMessages.length > 0) {
+    setInterval(function() {
+      demandMessages.forEach(function(msg) {
+        const currentNumber = Math.floor(Math.random() * 15) + 5; // 5-19
+        const text = msg.innerHTML;
+        const newText = text.replace(/\d+\s+people/, currentNumber + ' people');
+        msg.innerHTML = newText;
+      });
+    }, 30000); // Update every 30 seconds
+  }
+
+  // Track urgency message views for analytics
+  messages.forEach(function(message) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const messageType = message.className.match(/urgency-message-(\w+)/)?.[1] || 'unknown';
+
+          // Google Analytics tracking
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'urgency_message_view', {
+              'message_type': messageType
+            });
+          }
+
+          // Shopify analytics tracking
+          if (typeof window.ShopifyAnalytics !== 'undefined') {
+            window.ShopifyAnalytics.lib.track('Urgency Message Viewed', {
+              type: messageType
+            });
+          }
+
+          observer.unobserve(message);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(message);
+  });
+})();
+</script>

@@ -1,0 +1,141 @@
+{%- comment -%}
+  Trust Badges Component
+  Builds confidence and trust with customers
+  Shows certifications and guarantees
+{%- endcomment -%}
+
+<style>
+  .trust-badges {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 20px 0;
+    margin: 20px 0;
+    border-top: 2px solid var(--color-scheme-text, #024638);
+    border-bottom: 2px solid var(--color-scheme-text, #024638);
+  }
+
+  @media (min-width: 640px) {
+    .trust-badges {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+  }
+
+  .trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--color-scheme-card, #ffffff);
+    border-radius: 8px;
+    border: 2px solid var(--color-scheme-text, #024638);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .trust-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 var(--color-scheme-text, #024638);
+  }
+
+  .trust-badge-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .trust-badge-text {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    color: var(--color-scheme-text, #024638);
+  }
+
+  @media (min-width: 640px) {
+    .trust-badge-icon {
+      font-size: 36px;
+    }
+
+    .trust-badge-text {
+      font-size: 12px;
+    }
+  }
+
+  /* Tooltip for additional info */
+  .trust-badge[title] {
+    cursor: help;
+  }
+</style>
+
+<div class="trust-badges" role="list" aria-label="Trust and quality badges">
+  <div
+    class="trust-badge"
+    role="listitem"
+    title="Made with 100% natural, plant-based ingredients"
+  >
+    <div class="trust-badge-icon" aria-hidden="true">🌿</div>
+    <div class="trust-badge-text">100% Natural</div>
+  </div>
+
+  <div
+    class="trust-badge"
+    role="listitem"
+    title="Cruelty-free and never tested on animals"
+  >
+    <div class="trust-badge-icon" aria-hidden="true">🐰</div>
+    <div class="trust-badge-text">Cruelty Free</div>
+  </div>
+
+  <div
+    class="trust-badge"
+    role="listitem"
+    title="Formulated and manufactured in the United Kingdom"
+  >
+    <div class="trust-badge-icon" aria-hidden="true">🇬🇧</div>
+    <div class="trust-badge-text">Made in UK</div>
+  </div>
+
+  <div
+    class="trust-badge"
+    role="listitem"
+    title="Completely palm oil free formula"
+  >
+    <div class="trust-badge-icon" aria-hidden="true">🌴</div>
+    <div class="trust-badge-text">Palm Oil Free</div>
+  </div>
+</div>
+
+<script>
+// Add simple tooltip functionality for better UX
+(function() {
+  const badges = document.querySelectorAll('.trust-badge[title]');
+
+  badges.forEach(badge => {
+    // Improve accessibility
+    badge.setAttribute('tabindex', '0');
+    badge.setAttribute('role', 'button');
+
+    // Optional: Add analytics tracking for badge clicks
+    badge.addEventListener('click', function() {
+      const badgeText = this.querySelector('.trust-badge-text')?.textContent || 'Unknown';
+
+      // Track with Google Analytics if available
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'trust_badge_click', {
+          'badge_name': badgeText
+        });
+      }
+
+      // Track with Shopify analytics if available
+      if (typeof window.ShopifyAnalytics !== 'undefined') {
+        window.ShopifyAnalytics.lib.track('Trust Badge Clicked', {
+          badge: badgeText
+        });
+      }
+    });
+  });
+})();
+</script>
