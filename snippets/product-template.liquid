@@ -100,6 +100,14 @@
     --largest-media-aspect-ratio: {{ tallest_media_aspect_ratio }};
     --thumbnails-height:  calc(var(--feature-media-width) / var(--largest-media-aspect-ratio));
   }
+
+  /* Remove order on desktop for grid layout */
+  @media (min-width: 990px) {
+    #shopify-section-{{ section.id }} .product-media,
+    #shopify-section-{{ section.id }} .product-content {
+      order: unset !important;
+    }
+  }
 </style>
 
 <data-island
@@ -128,7 +136,7 @@
 
     <div class="{% if is_feature %}{% if section.settings.title != '' %}section-content-top-margin{% endif %}{% endif %}">
       <div class="flex flex-col gap-10 lg:grid lg:grid-cols-12">
-        <div class="product-media col-span-full {{ media_desktop_width }} order-2 lg:order-none">
+        <div class="product-media col-span-full {{ media_desktop_width }}" style="order: 2;" data-mobile-order="2">
           {% assign shape_id = section.id %}
           {%- render 'collection-shape-defs',
             shape: section.settings.image_shape,
@@ -417,7 +425,7 @@
           {% endif %}
         </div>
 
-        <div class="product-content col-span-full {{ content_desktop_width }} px-section lg:px-0 order-1 lg:order-none">
+        <div class="product-content col-span-full {{ content_desktop_width }} px-section lg:px-0" style="order: 1;" data-mobile-order="1">
           <div class="product-block-container w-full max-w-full xl:grid xl:grid-cols-12">
             <div class="relative xl:col-span-10 xl:col-start-2">
               {%- assign last_block_was_card = false -%}
