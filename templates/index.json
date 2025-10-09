@@ -119,6 +119,10 @@
       "type": "transformation-stories",
       "settings": {}
     },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {}
+    },
     "image_with_text_XQN4db": {
       "type": "image-with-text",
       "custom_css": [],
@@ -455,6 +459,7 @@
     "problem_agitate",
     "solution",
     "transformation_stories",
+    "guarantee",
     "image_with_text_XQN4db",
     "featured_testimonials",
     "feature_text_thGCi6",
