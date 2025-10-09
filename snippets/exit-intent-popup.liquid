@@ -200,11 +200,12 @@
         Get <strong>10% OFF</strong> your first order + exclusive skin care tips!
       </p>
 
-      <form id="exit-popup-form">
+      {% form 'customer', id: 'exit-popup-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter,exit-intent,popup-subscriber">
         <input
           type="email"
           id="exit-popup-email"
-          name="email"
+          name="contact[email]"
           placeholder="Enter your email address"
           required
           aria-label="Email address"
@@ -215,7 +216,7 @@
         <p id="exit-popup-disclaimer">
           We respect your privacy. Unsubscribe anytime.
         </p>
-      </form>
+      {% endform %}
     </div>
 
     <div id="exit-popup-success">
@@ -339,80 +340,76 @@
     }
   });
 
-  // Form submission
+  // Form submission - use native Shopify form with AJAX
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('exit-popup-email').value;
     const submitBtn = document.getElementById('exit-popup-submit');
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Subscribing...';
 
     try {
-      // Subscribe to Shopify customer list - same format as newsletter form
-      const formData = new FormData();
-      formData.append('form_type', 'customer');
-      formData.append('utf8', '✓');
-      formData.append('contact[email]', email);
-      formData.append('contact[tags]', 'newsletter,exit-intent,popup-subscriber');
+      // Submit using FormData from the actual form (includes CSRF token)
+      const formData = new FormData(form);
 
-      const response = await fetch('/contact', {
+      const response = await fetch(form.action || window.location.pathname, {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json, text/javascript, */*; q=0.01',
-          'X-Requested-With': 'XMLHttpRequest'
+          'Accept': 'application/json'
         }
       });
 
       // Log for debugging
       console.log('Subscription response:', response.status, response.statusText);
 
-      if (!response.ok) {
-        const text = await response.text();
-        console.log('Response body:', text);
-      }
+      // Shopify returns 200 even on success, check for errors in response
+      if (response.redirected || response.status === 200 || response.ok) {
+        hasSubscribed = true;
 
-      hasSubscribed = true;
+        // Show success message with discount code
+        content.style.display = 'none';
+        success.classList.add('show');
 
-      // Show success message with discount code
-      content.style.display = 'none';
-      success.classList.add('show');
-
-      // Set up copy code button
-      const copyBtn = document.getElementById('copy-code-btn');
-      if (copyBtn) {
-        copyBtn.addEventListener('click', function() {
-          navigator.clipboard.writeText('SDY4CMNHNW93').then(() => {
-            copyBtn.textContent = '✅ COPIED!';
-            copyBtn.style.background = '#059669';
-            setTimeout(() => {
-              copyBtn.textContent = '📋 COPY CODE';
-              copyBtn.style.background = '#024638';
-            }, 2000);
+        // Set up copy code button
+        const copyBtn = document.getElementById('copy-code-btn');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText('SDY4CMNHNW93').then(() => {
+              copyBtn.textContent = '✅ COPIED!';
+              copyBtn.style.background = '#059669';
+              setTimeout(() => {
+                copyBtn.textContent = '📋 COPY CODE';
+                copyBtn.style.background = '#024638';
+              }, 2000);
+            });
           });
-        });
-      }
+        }
 
-      // Track conversion
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'newsletter_signup', {
-          'event_category': 'engagement',
-          'event_label': 'exit_popup',
-          'value': 10
-        });
-      }
+        // Track conversion
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'newsletter_signup', {
+            'event_category': 'engagement',
+            'event_label': 'exit_popup',
+            'value': 10
+          });
+        }
 
-      if (typeof window.ShopifyAnalytics !== 'undefined') {
-        window.ShopifyAnalytics.lib.track('Newsletter Signup', {
-          source: 'exit_popup',
-          discount_code: 'SDY4CMNHNW93'
-        });
-      }
+        if (typeof window.ShopifyAnalytics !== 'undefined') {
+          window.ShopifyAnalytics.lib.track('Newsletter Signup', {
+            source: 'exit_popup',
+            discount_code: 'SDY4CMNHNW93'
+          });
+        }
 
-      // Don't auto-close, let user copy code
-      // setTimeout(closePopup, 10000);
+        // Don't auto-close, let user copy code
+        // setTimeout(closePopup, 10000);
+      } else {
+        // Handle error response
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Try Again';
+        alert('Something went wrong. Please try again.');
+      }
 
     } catch (error) {
       console.error('Subscription error:', error);
